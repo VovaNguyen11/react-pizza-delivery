@@ -50,14 +50,15 @@
     font-size: rem(20);
     background: #f9f9f9;
     padding: 13px 20px;
+
     &:hover,
     &:focus {
-      background-color: darken(#f9f9f9, 2%);
+      background-color: darken(#f9f9f9, 5%);
       outline: none;
     }
 
     &:active {
-      background-color: darken(#f9f9f9, 5%);
+      background-color: darken(#f9f9f9, 8%);
     }
 
     &.active {

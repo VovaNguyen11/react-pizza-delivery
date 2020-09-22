@@ -8,9 +8,9 @@ import {setActiveCategory} from "../redux/actions/filters"
 
 const categories = [
   {id: 1, name: "Meat"},
-  {id: 2, name: "Vegeterian"},
-  {id: 3, name: "Grill"},
-  {id: 4, name: "Hot"},
+  {id: 2, name: "Grill"},
+  {id: 3, name: "Spicy"},
+  {id: 4, name: "Vegeterian"},
 ]
 
 const CategoriesBar = ({activeCat, setActiveCategory}) => {
@@ -20,9 +20,9 @@ const CategoriesBar = ({activeCat, setActiveCategory}) => {
         <li className="categories__item">
           <Button
             className={classNames("button--black", {
-              active: !activeCat,
+              active: Object.keys(activeCat).length === 0,
             })}
-            onClick={() => setActiveCategory(null)}
+            onClick={() => setActiveCategory({})}
           >
             All
           </Button>
@@ -31,9 +31,9 @@ const CategoriesBar = ({activeCat, setActiveCategory}) => {
           <li className="categories__item" key={c.id}>
             <Button
               className={classNames("button--black", {
-                active: activeCat === c.id,
+                active: activeCat && activeCat.id === c.id,
               })}
-              onClick={() => setActiveCategory(c.id)}
+              onClick={() => setActiveCategory(c)}
             >
               {c.name}
             </Button>

@@ -1,10 +1,46 @@
-import React from "react"
+import React, {useState, useEffect, useRef} from "react"
+import {connect} from "react-redux"
 
-const SortPopup = () => {
+import {setSortBy} from "../redux/actions/filters"
+
+const sortingItems = [
+  {id: "1", name: "popularity"},
+  {id: "2", name: "price"},
+  {id: "3", name: "alphabet"},
+]
+
+const SortPopup = ({setSortBy, activeSortType}) => {
+  const [showPopup, setShowPopup] = useState(false)
+  const sortRef = useRef()
+
+  useEffect(() => {
+    if (showPopup) {
+      document.addEventListener("mousedown", handleClickOutside)
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside)
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside)
+    }
+  }, [showPopup])
+
+  const handleClickOutside = e => {
+    if (sortRef.current.contains(e.target)) {
+      return
+    }
+    setShowPopup(false)
+  }
+
+  const onSortItemClick = item => e => {
+    setSortBy(item)
+    setShowPopup(false)
+  }
+
   return (
-    <div className="sort">
-      <div className="sort__label">
+    <div className="sort" ref={sortRef}>
+      <div className="sort__label" onClick={() => setShowPopup(!showPopup)}>
         <svg
+          className={showPopup ? "rotated" : ""}
           width="10"
           height="6"
           viewBox="0 0 10 6"
@@ -16,18 +52,30 @@ const SortPopup = () => {
             fill="#2C2C2C"
           />
         </svg>
-        <b>Сортировка по:</b>
-        <span>популярности</span>
+        <b>Sort by:</b>
+        <span>{activeSortType.name}</span>
       </div>
-      <div className="sort__popup">
-        <ul>
-          <li className="active">популярности</li>
-          <li>цене</li>
-          <li>алфавиту</li>
-        </ul>
-      </div>
+      {showPopup && (
+        <div className="sort__popup">
+          <ul>
+            {sortingItems.map(item => (
+              <li
+                className={activeSortType.name === item.name ? "active" : ""}
+                key={item.id}
+                onClick={onSortItemClick(item)}
+              >
+                {item.name}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   )
 }
 
-export default SortPopup
+const mapStateToProps = ({filters}) => ({
+  activeSortType: filters.sortBy,
+})
+
+export default connect(mapStateToProps, {setSortBy})(SortPopup)
