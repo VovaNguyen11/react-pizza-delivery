@@ -7,11 +7,9 @@ const App = () => {
   return (
     <div className="container">
       <div className="app">
-        <div className="content">
-          <Switch>
-            <Route exact path="/" component={HomePage} />
-          </Switch>
-        </div>
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+        </Switch>
       </div>
     </div>
   )

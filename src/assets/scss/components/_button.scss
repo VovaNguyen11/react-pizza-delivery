@@ -10,7 +10,6 @@
   border: 1px solid transparent;
   color: #ffffff;
 
-  
   &:hover {
     background-color: darken($main-color, 8%);
   }
@@ -42,7 +41,28 @@
 
     span {
       font-weight: 600;
-      font-size: 16px;
+      font-size: rem(16);
+    }
+  }
+  &--black {
+    color: $main-font-color;
+    font-weight: bold;
+    font-size: rem(20);
+    background: #f9f9f9;
+    padding: 13px 20px;
+    &:hover,
+    &:focus {
+      background-color: darken(#f9f9f9, 2%);
+      outline: none;
+    }
+
+    &:active {
+      background-color: darken(#f9f9f9, 5%);
+    }
+
+    &.active {
+      background-color: #282828;
+      color: #fff;
     }
   }
 }
