@@ -2,8 +2,8 @@ import C from "../types_constants"
 
 const pizzas = (state = [], {type, payload}) => {
   switch (type) {
-    case C.FETCH_PIZZAS:
-      return [...state, ...payload]
+    case C.SET_PIZZAS:
+      return [...payload]
     default:
       return state
   }

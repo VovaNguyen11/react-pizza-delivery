@@ -10,8 +10,8 @@ import SortPopup from "../components/SortPopup"
 
 const HomePage = ({activeCat, fetchPizzasAction, pizzas}) => {
   useEffect(() => {
-    fetchPizzasAction()
-  }, [])
+    fetchPizzasAction(activeCat)
+  }, [activeCat])
 
   return (
     <div className="container">
