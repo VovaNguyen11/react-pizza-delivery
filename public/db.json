@@ -1,0 +1,126 @@
+{
+  "pizzas": [
+    {
+      "id": 0,
+      "imageUrl": "https://cdn.dodostatic.net/static/Img/Products/Pizza/ru-RU/d2e337e9-e07a-4199-9cc1-501cc44cb8f8.jpg",
+      "name": "Pepperoni",
+      "description": "Savory pepperoni, large portion of mozzarella, tomato sauce",
+      "types": [0, 1],
+      "sizes": [26],
+      "price": 8,
+      "category": 0,
+      "rating": 4
+    },
+    {
+      "id": 1,
+      "imageUrl": "https://dodopizza.azureedge.net/static/Img/Products/Pizza/ru-RU/2ffc31bb-132c-4c99-b894-53f7107a1441.jpg",
+      "name": "Cheese",
+      "description": "Large portion of mozzarella, tomato sauce",
+      "types": [0],
+      "sizes": [23, 40],
+      "price": 8,
+      "category": 1,
+      "rating": 6
+    },
+
+    {
+      "id": 2,
+      "imageUrl": "https://dodopizza.azureedge.net/static/Img/Products/Pizza/ru-RU/6652fec1-04df-49d8-8744-232f1032c44b.jpg",
+      "name": "Chicken BBQ",
+      "description": "Chicken, BBQ sauce, tomato sauce, red onion, mozzarella, bacon",
+      "types": [0],
+      "sizes": [23, 40],
+      "price": 9.49,
+      "category": 1,
+      "rating": 4
+    },
+    {
+      "id": 3,
+      "imageUrl": "https://cdn.dodostatic.net/static/Img/Products/21379561a76646f1945f1bc759c749b5_584x584.jpeg",
+      "name": "Margherita",
+      "description": "Large portion of mozzarella, tomatoes, italian herbs, tomato sauce",
+      "types": [1],
+      "sizes": [23, 30, 40],
+      "price": 9.99,
+      "category": 2,
+      "rating": 2
+    },
+    {
+      "id": 4,
+      "imageUrl": "https://dodopizza.azureedge.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg",
+      "name": "Cheesburger-pizza",
+      "description": "Meat sauce bolognese, mozzarella, red onion, pickles, tomatoes, burger sauce",
+      "types": [0, 1],
+      "sizes": [23, 30, 40],
+      "price": 11.49,
+      "category": 3,
+      "rating": 8
+    },
+    {
+      "id": 5,
+      "imageUrl": "https://cdn.dodostatic.net/static/Img/Products/69d38b6868e749369ae1427339236512_584x584.jpeg",
+      "name": "Vegan",
+      "description": "Italian herbs, tomato sauce, cheese cubes, mushrooms, bell peppers, red onions, mozzarella, olives, tomatoes",
+      "types": [0],
+      "sizes": [30, 40],
+      "price": 13.99,
+      "category": 2,
+      "rating": 2
+    },
+    {
+      "id": 6,
+      "imageUrl": "https://cdn.dodostatic.net/static/Img/Products/Pizza/ru-RU/3354e3c2-8ce0-4d64-a11d-eb4c455b29c6.jpg",
+      "name": "Mexican",
+      "description": "Spicy chicken, tomato sauce, bell peppers, red onion, mozzarella, hot jalapeno peppers, tomatoes, salsa sauce",
+      "types": [0, 1],
+      "sizes": [23, 30, 40],
+      "price": 15,
+      "category": 1,
+      "rating": 9
+    },
+    {
+      "id": 7,
+      "imageUrl": "https://cdn.dodostatic.net/static/Img/Products/c4f196c92ac943d59047267af46ceb5d_584x584.jpeg",
+      "name": "Arriva!",
+      "description": "Burger sauce, chicken, ranch sauce, chorizo, bell peppers, red onions, mozzarella, tomatoes, garlic",
+      "types": [0, 1],
+      "sizes": [23, 30, 40],
+      "price": 13.99,
+      "category": 4,
+      "rating": 10
+    },
+    {
+      "id": 8,
+      "imageUrl": "https://dodopizza.azureedge.net/static/Img/Products/Pizza/ru-RU/ec29465e-606b-4a04-a03e-da3940d37e0e.jpg",
+      "name": "Four seasons",
+      "description": "An increased portion of mozzarella, ham, spicy pepperoni, cheese cubes, tomatoes, mushrooms, tomato sauce, Italian herbs",
+      "types": [0, 1],
+      "sizes": [23, 30, 40],
+      "price": 12.49,
+      "category": 5,
+      "rating": 10
+    },
+    {
+      "id": 9,
+      "imageUrl": "https://cdn.dodostatic.net/static/Img/Products/Pizza/ru-RU/54537b28-c154-414a-bfd5-fc5b993af275.jpg",
+      "name": "Pizza-pie",
+      "description": "Pineapples, lingonberries, condensed milk",
+      "types": [0, 1],
+      "sizes": [23, 30, 40],
+      "price": 9.99,
+      "category": 5,
+      "rating": 7
+    },
+    {
+      "id": 10,
+      "imageUrl": "https://cdn.dodostatic.net/static/Img/Products/Pizza/ru-RU/be6433d8-1a81-4a31-8a60-36d1bcbf2dc9.jpg",
+      "name": "Pesto",
+      "description": "Pesto sauce, cream sauce, chicken, cheese cubes, cherry tomatoes, mozzarella",
+      "types": [0, 1],
+      "sizes": [23, 30, 40],
+      "price": 11.99,
+      "category": 5,
+      "rating": 4
+    }
+  ]
+}

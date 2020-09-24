@@ -1,0 +1,36 @@
+.pizza {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  &__main {
+    margin-bottom: 25px;
+  }
+  &__preview {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.2s ease-in-out;
+    cursor: pointer;
+    &:hover {
+      transform: translateY(4px);
+    }
+  }
+  &__name {
+    margin: 10px 0;
+    font-size: rem(24px);
+  }
+
+  &__desc {
+    color: #73798c;
+  }
+
+  &__price {
+    font-weight: 700;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

@@ -13,11 +13,13 @@
   &:hover {
     background-color: darken($main-color, 8%);
   }
+  &:focus {
+    outline: none;
+  }
 
   &:active {
     background-color: darken($main-color, 12%);
     transform: translateY(1px);
-    outline: none;
   }
 
   &__delimiter {
@@ -54,7 +56,6 @@
     &:hover,
     &:focus {
       background-color: darken(#f9f9f9, 5%);
-      outline: none;
     }
 
     &:active {
