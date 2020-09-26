@@ -1,46 +1,30 @@
-import React, {useState, useEffect, useRef} from "react"
+import React from "react"
 import {connect} from "react-redux"
+import useOutsideClick from "../hooks/useOutsideClick"
 
 import {setSortBy} from "../redux/actions/filters"
 
 const sortingItems = [
-  {id: "1", name: "popularity"},
-  {id: "2", name: "price"},
-  {id: "3", name: "alphabet"},
+  {id: 1, name: "popularity", type: "rating", order: "desc"},
+  {id: 2, name: "price", type: "price", order: "asc"},
+  {id: 3, name: "alphabet", type: "name", order: "asc"},
 ]
 
 const SortPopup = ({setSortBy, activeSortType}) => {
-  const [showPopup, setShowPopup] = useState(false)
-  const sortRef = useRef()
+  const {ref, isVisible, setIsVisible} = useOutsideClick(false)
 
-  useEffect(() => {
-    if (showPopup) {
-      document.addEventListener("mousedown", handleClickOutside)
-    } else {
-      document.removeEventListener("mousedown", handleClickOutside)
-    }
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside)
-    }
-  }, [showPopup])
-
-  const handleClickOutside = e => {
-    if (sortRef.current.contains(e.target)) {
-      return
-    }
-    setShowPopup(false)
-  }
+  const onPopupClick = () => setIsVisible(isVisible => !isVisible)
 
   const onSortItemClick = item => e => {
     setSortBy(item)
-    setShowPopup(false)
+    setIsVisible(false)
   }
 
   return (
-    <div className="sort" ref={sortRef}>
-      <div className="sort__label" onClick={() => setShowPopup(!showPopup)}>
+    <div className="sort" ref={ref}>
+      <div className="sort__label" onClick={onPopupClick}>
         <svg
-          className={showPopup ? "rotated" : ""}
+          className={isVisible ? "rotated" : ""}
           width="10"
           height="6"
           viewBox="0 0 10 6"
@@ -55,7 +39,7 @@ const SortPopup = ({setSortBy, activeSortType}) => {
         <b>Sort by:</b>
         <span>{activeSortType.name}</span>
       </div>
-      {showPopup && (
+      {isVisible && (
         <div className="sort__popup">
           <ul>
             {sortingItems.map(item => (

@@ -1,9 +1,10 @@
 import C from "../types_constants"
 
 const initialState = {
-  category: {},
+  category: null,
   sortBy: {
     name: "popularity",
+    type: "rating",
     order: "desc",
   },
 }
@@ -11,7 +12,7 @@ const initialState = {
 const filters = (state = initialState, {type, payload}) => {
   switch (type) {
     case C.SET_CATEGORY:
-      return {...state, category: {...payload}}
+      return {...state, category: payload}
     case C.SET_SORT_BY:
       return {...state, sortBy: {...payload}}
     default:

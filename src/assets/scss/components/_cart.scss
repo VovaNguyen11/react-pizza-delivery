@@ -1,0 +1,33 @@
+.cart {
+  &--empty {
+    width: 560px;
+    margin: 0 auto;
+    padding: 30px;
+    box-sizing: border-box;
+    text-align: center;
+
+    & > *:not(:last-child) {
+      margin: 0 auto 25px;
+    }
+    h3 {
+      font-size: rem(30);
+      margin: 0 0 20px;
+    }
+
+    p {
+      color: $alt-font-color;
+      font-size: rem(20);
+      line-height: 1.3;
+    }
+
+    img {
+      width: 50%;
+
+      height: auto;
+      display: block;
+    }
+    i {
+      font-style: normal;
+    }
+  }
+}

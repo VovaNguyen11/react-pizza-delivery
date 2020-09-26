@@ -46,7 +46,7 @@
       font-size: rem(16);
     }
   }
-  &--black {
+  &--category {
     color: $main-font-color;
     font-weight: bold;
     font-size: rem(20);
@@ -65,6 +65,49 @@
     &.active {
       background-color: #282828;
       color: #fff;
+    }
+  }
+
+  &--black {
+    background-color: #282828;
+    color: #fff;
+    font-weight: 700;
+    &:hover {
+      background-color: lighten(#282828, 8%);
+    }
+  }
+
+  &--outline {
+    background-color: #fff;
+    border-color: $main-color;
+    &,
+    span {
+      color: $main-color;
+    }
+
+    svg {
+      path {
+        fill: $main-color;
+      }
+    }
+
+    &:hover {
+      background-color: $main-color;
+
+      &,
+      span {
+        color: #fff;
+      }
+
+      svg {
+        path {
+          fill: #fff;
+        }
+      }
+    }
+
+    &:active {
+      background-color: darken($main-color, 8%);
     }
   }
 }

@@ -14,15 +14,23 @@ const categories = [
 ]
 
 const CategoriesBar = ({activeCat, setActiveCategory}) => {
+  const onCategoryClick = category => () => {
+    if (category !== null) {
+      setActiveCategory(category)
+    } else {
+      setActiveCategory(null)
+    }
+  }
   return (
     <div className="categories">
       <ul className="categories__list">
         <li className="categories__item">
           <Button
-            className={classNames("button--black", {
-              active: Object.keys(activeCat).length === 0,
+            className={classNames("button--category", {
+              // active: Object.keys(activeCat).length === 0,
+              active: activeCat === null,
             })}
-            onClick={() => setActiveCategory({})}
+            onClick={onCategoryClick(null)}
           >
             All
           </Button>
@@ -30,10 +38,10 @@ const CategoriesBar = ({activeCat, setActiveCategory}) => {
         {categories.map(c => (
           <li className="categories__item" key={c.id}>
             <Button
-              className={classNames("button--black", {
-                active: activeCat && activeCat.id === c.id,
+              className={classNames("button--category", {
+                active: activeCat !== null && activeCat.id === c.id,
               })}
-              onClick={() => setActiveCategory(c)}
+              onClick={onCategoryClick(c)}
             >
               {c.name}
             </Button>

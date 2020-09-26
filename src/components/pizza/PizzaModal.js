@@ -1,19 +1,41 @@
-import React from "react"
+import React, {useRef, useEffect} from "react"
+import {connect} from "react-redux"
+
+import {useHistory, useParams} from "react-router-dom"
+import {disableBodyScroll, enableBodyScroll} from "body-scroll-lock"
+
 import Button from "../Button"
 
-const PizzaModal = ({closeModal}) => {
-  
+const PizzaModal = ({pizzas}) => {
+  const modalRef = useRef()
+  const history = useHistory()
+  const {id} = useParams()
+  let item = pizzas.find(p => p.id === Number(id))
+  if (!item) item = {}
+
+  useEffect(() => {
+    const modalNode = modalRef.current
+    disableBodyScroll(modalNode, {reserveScrollBarGap: true})
+    return () => {
+      enableBodyScroll(modalNode)
+    }
+  }, [])
+
+  const closeModal = e => {
+    history.goBack()
+  }
+
   return (
-    <div className="modal" onClick={closeModal()}>
+    <div className="modal" ref={modalRef} onClick={closeModal}>
       <div className="modal__container" onClick={e => e.stopPropagation()}>
         <div className="modal__content modal__content-left">
-          <img
-            src="https://dodopizza.azureedge.net/static/Img/Products/f035c7f46c0844069722f2bb3ee9f113_584x584.jpeg"
-            alt=""
-          />
+          <img src={item.imageUrl} alt={`${item.name} pizza`} />
         </div>
         <div className="modal__content modal__content-right">
-          <h3>Pepperoni</h3>
+          <div>
+            <h3>{item.name}</h3>
+            <p>{item.description}</p>
+          </div>
           <Button>Add to Cart</Button>
         </div>
         <svg
@@ -22,7 +44,7 @@ const PizzaModal = ({closeModal}) => {
           viewBox="0 0 25 25"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          onClick={closeModal()}
+          onClick={closeModal}
         >
           <path
             fillRule="evenodd"
@@ -36,4 +58,8 @@ const PizzaModal = ({closeModal}) => {
   )
 }
 
-export default PizzaModal
+const mapStateToProps = ({pizzas}) => ({
+  pizzas,
+})
+
+export default connect(mapStateToProps)(PizzaModal)

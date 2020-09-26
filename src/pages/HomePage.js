@@ -8,10 +8,10 @@ import Header from "../components/Header"
 import PizzaList from "../components/pizza/PizzaList"
 import SortPopup from "../components/SortPopup"
 
-const HomePage = ({activeCat, fetchPizzasAction, pizzas}) => {
+const HomePage = ({fetchPizzasAction, pizzas, activeCat, sortBy}) => {
   useEffect(() => {
-    fetchPizzasAction(activeCat)
-  }, [activeCat])
+    fetchPizzasAction(activeCat, sortBy)
+  }, [activeCat, sortBy, fetchPizzasAction])
 
   return (
     <div className="container">
@@ -22,7 +22,7 @@ const HomePage = ({activeCat, fetchPizzasAction, pizzas}) => {
           <SortPopup />
         </div>
         <h2 className="content__title">
-          {Object.keys(activeCat).length ? activeCat.name : "All"} pizzas
+          {activeCat !== null ? activeCat.name : "All"} pizzas
         </h2>
         <div className="content__items">
           <PizzaList pizzas={pizzas} />
@@ -34,6 +34,7 @@ const HomePage = ({activeCat, fetchPizzasAction, pizzas}) => {
 
 const mapStateToProps = ({filters, pizzas}) => ({
   activeCat: filters.category,
+  sortBy: filters.sortBy,
   pizzas,
 })
 

@@ -1,20 +1,39 @@
-import React from "react"
+import React, {memo} from "react"
+import {Link, useLocation} from "react-router-dom"
+
 import Button from "../Button"
 
 const PizzaItem = ({pizza}) => {
+  let location = useLocation()
   return (
     <div className="pizza">
       <div className="pizza__main">
-        <img src={pizza.imageUrl} alt="" className="pizza__preview" />
+        <Link
+          to={{
+            pathname: `/pizzas/${pizza.id}`,
+            state: {background: location},
+          }}
+        >
+          <img src={pizza.imageUrl} alt="" className="pizza__preview" />
+        </Link>
         <h3 className="pizza__name">{pizza.name}</h3>
         <p className="pizza__desc">{pizza.description}</p>
       </div>
       <div className="pizza__footer">
         <span className="pizza__price">from {pizza.price}$</span>
-        <Button>Choose</Button>
+        <Link
+          to={{
+            pathname: `/pizzas/${pizza.id}`,
+            state: {background: location},
+          }}
+        >
+          <Button className="button--add" outline>
+            Choose
+          </Button>
+        </Link>
       </div>
     </div>
   )
 }
 
-export default PizzaItem
+export default memo(PizzaItem)

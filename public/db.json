@@ -7,9 +7,9 @@
       "description": "Savory pepperoni, large portion of mozzarella, tomato sauce",
       "types": [0, 1],
       "sizes": [26],
-      "price": 8,
+      "price": 9.99,
       "category": 1,
-      "rating": 4
+      "rating": 14
     },
     {
       "id": 1,
@@ -19,7 +19,7 @@
       "types": [0],
       "sizes": [23, 40],
       "price": 8,
-      "category": 1,
+      "category": 4,
       "rating": 6
     },
 
@@ -30,8 +30,8 @@
       "description": "Chicken, BBQ sauce, tomato sauce, red onion, mozzarella, bacon",
       "types": [0],
       "sizes": [23, 40],
-      "price": 9.49,
-      "category": 2,
+      "price": 10.49,
+      "category": 1,
       "rating": 4
     },
     {
@@ -52,8 +52,8 @@
       "description": "Meat sauce bolognese, mozzarella, red onion, pickles, tomatoes, burger sauce",
       "types": [0, 1],
       "sizes": [23, 30, 40],
-      "price": 11.49,
-      "category": 3,
+      "price": 12.49,
+      "category": 2,
       "rating": 8
     },
     {
@@ -63,8 +63,8 @@
       "description": "Italian herbs, tomato sauce, cheese cubes, mushrooms, bell peppers, red onions, mozzarella, olives, tomatoes",
       "types": [0],
       "sizes": [30, 40],
-      "price": 13.99,
-      "category": 2,
+      "price": 11.99,
+      "category": 4,
       "rating": 2
     },
     {
@@ -86,7 +86,7 @@
       "types": [0, 1],
       "sizes": [23, 30, 40],
       "price": 13.99,
-      "category": 4,
+      "category": 1,
       "rating": 10
     },
     {
@@ -97,7 +97,7 @@
       "types": [0, 1],
       "sizes": [23, 30, 40],
       "price": 12.49,
-      "category": 3,
+      "category": 2,
       "rating": 10
     },
     {
@@ -119,7 +119,7 @@
       "types": [0, 1],
       "sizes": [23, 30, 40],
       "price": 11.99,
-      "category": 4,
+      "category": 1,
       "rating": 4
     }
   ]
