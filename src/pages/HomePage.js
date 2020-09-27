@@ -2,29 +2,43 @@ import React, {useEffect} from "react"
 import {connect} from "react-redux"
 
 import {fetchPizzasAction} from "../redux/actions/pizzas"
+import {setCategoryAction, setSortByAction} from "../redux/actions/filters"
 
 import CategoriesBar from "../components/CategoriesBar"
 import Header from "../components/Header"
 import PizzaList from "../components/pizza/PizzaList"
 import SortPopup from "../components/SortPopup"
 
-const HomePage = ({fetchPizzasAction, pizzas, activeCat, sortBy}) => {
+const HomePage = ({
+  pizzas,
+  activeCategory,
+  activeSortBy,
+  fetchPizzasAction,
+  setCategoryAction,
+  setSortByAction,
+}) => {
   useEffect(() => {
-    fetchPizzasAction(activeCat, sortBy)
-  }, [activeCat, sortBy, fetchPizzasAction])
+    fetchPizzasAction(activeCategory, activeSortBy)
+  }, [activeCategory, activeSortBy, fetchPizzasAction])
 
   return (
     <div className="container">
       <Header />
       <main className="content">
         <div className="content__top">
-          <CategoriesBar />
-          <SortPopup />
+          <CategoriesBar
+            activeCategory={activeCategory}
+            setCategoryAction={setCategoryAction}
+          />
+          <SortPopup
+            activeSortBy={activeSortBy}
+            setSortByAction={setSortByAction}
+          />
         </div>
-        <h2 className="content__title">
-          {activeCat !== null ? activeCat.name : "All"} pizzas
-        </h2>
         <div className="content__items">
+          <h2 className="content__title">
+            {activeCategory !== null ? activeCategory.name : "All"} pizzas
+          </h2>
           <PizzaList pizzas={pizzas} />
         </div>
       </main>
@@ -33,9 +47,13 @@ const HomePage = ({fetchPizzasAction, pizzas, activeCat, sortBy}) => {
 }
 
 const mapStateToProps = ({filters, pizzas}) => ({
-  activeCat: filters.category,
-  sortBy: filters.sortBy,
+  activeCategory: filters.category,
+  activeSortBy: filters.sortBy,
   pizzas,
 })
 
-export default connect(mapStateToProps, {fetchPizzasAction})(HomePage)
+export default connect(mapStateToProps, {
+  fetchPizzasAction,
+  setCategoryAction,
+  setSortByAction,
+})(HomePage)

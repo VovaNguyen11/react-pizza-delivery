@@ -1,8 +1,6 @@
 import React from "react"
-import {connect} from "react-redux"
-import useOutsideClick from "../hooks/useOutsideClick"
 
-import {setSortBy} from "../redux/actions/filters"
+import useOutsideClick from "../hooks/useOutsideClick"
 
 const sortingItems = [
   {id: 1, name: "popularity", type: "rating", order: "desc"},
@@ -10,13 +8,13 @@ const sortingItems = [
   {id: 3, name: "alphabet", type: "name", order: "asc"},
 ]
 
-const SortPopup = ({setSortBy, activeSortType}) => {
+const SortPopup = ({setSortByAction, activeSortBy}) => {
   const {ref, isVisible, setIsVisible} = useOutsideClick(false)
 
   const onPopupClick = () => setIsVisible(isVisible => !isVisible)
 
   const onSortItemClick = item => e => {
-    setSortBy(item)
+    setSortByAction(item)
     setIsVisible(false)
   }
 
@@ -37,14 +35,14 @@ const SortPopup = ({setSortBy, activeSortType}) => {
           />
         </svg>
         <b>Sort by:</b>
-        <span>{activeSortType.name}</span>
+        <span>{activeSortBy.name}</span>
       </div>
       {isVisible && (
         <div className="sort__popup">
           <ul>
             {sortingItems.map(item => (
               <li
-                className={activeSortType.name === item.name ? "active" : ""}
+                className={activeSortBy.name === item.name ? "active" : ""}
                 key={item.id}
                 onClick={onSortItemClick(item)}
               >
@@ -58,8 +56,4 @@ const SortPopup = ({setSortBy, activeSortType}) => {
   )
 }
 
-const mapStateToProps = ({filters}) => ({
-  activeSortType: filters.sortBy,
-})
-
-export default connect(mapStateToProps, {setSortBy})(SortPopup)
+export default SortPopup

@@ -1,12 +1,13 @@
 import React, {useRef, useEffect} from "react"
 import {connect} from "react-redux"
-
 import {useHistory, useParams} from "react-router-dom"
 import {disableBodyScroll, enableBodyScroll} from "body-scroll-lock"
 
+import {addPizzaCartAction} from "../../redux/actions/cart"
+
 import Button from "../Button"
 
-const PizzaModal = ({pizzas}) => {
+const PizzaModal = ({pizzas, addPizzaCartAction}) => {
   const modalRef = useRef()
   const history = useHistory()
   const {id} = useParams()
@@ -25,6 +26,11 @@ const PizzaModal = ({pizzas}) => {
     history.goBack()
   }
 
+  const onAddToCart = e => {
+    addPizzaCartAction(item)
+    history.push("/")
+  }
+
   return (
     <div className="modal" ref={modalRef} onClick={closeModal}>
       <div className="modal__container" onClick={e => e.stopPropagation()}>
@@ -36,7 +42,7 @@ const PizzaModal = ({pizzas}) => {
             <h3>{item.name}</h3>
             <p>{item.description}</p>
           </div>
-          <Button>Add to Cart</Button>
+          <Button onClick={onAddToCart}>Add to Cart for {item.price}$</Button>
         </div>
         <svg
           width="25"
@@ -62,4 +68,4 @@ const mapStateToProps = ({pizzas}) => ({
   pizzas,
 })
 
-export default connect(mapStateToProps)(PizzaModal)
+export default connect(mapStateToProps, {addPizzaCartAction})(PizzaModal)

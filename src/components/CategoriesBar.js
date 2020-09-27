@@ -1,10 +1,8 @@
 import React from "react"
-import {connect} from "react-redux"
+import PropTypes from "prop-types"
 import classNames from "classnames"
 
 import Button from "./Button"
-
-import {setActiveCategory} from "../redux/actions/filters"
 
 const categories = [
   {id: 1, name: "Meat"},
@@ -13,22 +11,17 @@ const categories = [
   {id: 4, name: "Vegeterian"},
 ]
 
-const CategoriesBar = ({activeCat, setActiveCategory}) => {
-  const onCategoryClick = category => () => {
-    if (category !== null) {
-      setActiveCategory(category)
-    } else {
-      setActiveCategory(null)
-    }
-  }
+const CategoriesBar = ({activeCategory, setCategoryAction}) => {
+  const onCategoryClick = category => () =>
+    category !== null ? setCategoryAction(category) : setCategoryAction(null)
+
   return (
     <div className="categories">
       <ul className="categories__list">
         <li className="categories__item">
           <Button
             className={classNames("button--category", {
-              // active: Object.keys(activeCat).length === 0,
-              active: activeCat === null,
+              active: activeCategory === null,
             })}
             onClick={onCategoryClick(null)}
           >
@@ -39,7 +32,7 @@ const CategoriesBar = ({activeCat, setActiveCategory}) => {
           <li className="categories__item" key={c.id}>
             <Button
               className={classNames("button--category", {
-                active: activeCat !== null && activeCat.id === c.id,
+                active: activeCategory !== null && activeCategory.id === c.id,
               })}
               onClick={onCategoryClick(c)}
             >
@@ -52,8 +45,12 @@ const CategoriesBar = ({activeCat, setActiveCategory}) => {
   )
 }
 
-const mapStateToProps = ({filters}) => ({
-  activeCat: filters.category,
-})
+CategoriesBar.propTypes = {
+  activeCategory: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+  }),
+  setCategoryAction: PropTypes.func.isRequired,
+}
 
-export default connect(mapStateToProps, {setActiveCategory})(CategoriesBar)
+export default CategoriesBar

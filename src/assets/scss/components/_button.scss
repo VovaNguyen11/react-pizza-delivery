@@ -1,6 +1,5 @@
 .button {
   display: inline-block;
-  min-width: 100px;
   padding: 10px 20px;
   background-color: $main-color;
   border-radius: 25px;
@@ -13,6 +12,7 @@
   &:hover {
     background-color: darken($main-color, 8%);
   }
+
   &:focus {
     outline: none;
   }
@@ -26,8 +26,7 @@
     width: 1px;
     height: 25px;
     background-color: rgba(255, 255, 255, 0.25);
-    margin-left: 14px;
-    margin-right: 14px;
+    margin: 0 15px;
   }
 
   &--cart {
@@ -36,9 +35,8 @@
     line-height: 23px;
     padding: 12px 25px;
 
-    svg {
+    img {
       margin-right: 8px;
-      margin-bottom: 1px;
     }
 
     span {
@@ -48,6 +46,7 @@
   }
   &--category {
     color: $main-font-color;
+    min-width: 100px;
     font-weight: bold;
     font-size: rem(20);
     background: #f9f9f9;
@@ -85,12 +84,6 @@
       color: $main-color;
     }
 
-    svg {
-      path {
-        fill: $main-color;
-      }
-    }
-
     &:hover {
       background-color: $main-color;
 
@@ -98,16 +91,18 @@
       span {
         color: #fff;
       }
-
-      svg {
-        path {
-          fill: #fff;
-        }
-      }
     }
 
     &:active {
       background-color: darken($main-color, 8%);
+    }
+  }
+
+  &--pay {
+    padding: 15px 25px;
+    min-width: 200px;
+    span {
+      color: #fff;
     }
   }
 }

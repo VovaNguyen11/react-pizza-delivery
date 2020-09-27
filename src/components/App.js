@@ -2,13 +2,12 @@ import React, {lazy, Suspense} from "react"
 import {Route, Switch, useLocation} from "react-router-dom"
 
 import HomePage from "../pages/HomePage"
+import PizzaModal from "../components/pizza/PizzaModal"
 
 const CartPage = lazy(() => import("../pages/CartPage"))
-const PizzaModal = lazy(() => import("../components/pizza/PizzaModal"))
 
 const App = () => {
   const location = useLocation()
-
   const background = location.state && location.state.background
 
   return (

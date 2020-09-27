@@ -1,7 +1,5 @@
 .modal {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flex-centered;
   height: 100%;
   width: 100%;
   position: fixed;
@@ -49,6 +47,14 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+
+      h3 {
+        font-size: 1.5rem;
+        margin: 0 0 15px;
+      }
+      p {
+        margin: 0;
+      }
     }
   }
 }

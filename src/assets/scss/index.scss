@@ -13,14 +13,11 @@
 @import "components/pizza-modal";
 @import "components/cart";
 
-body {
-  margin: 0;
+html {
   padding: 30px 0;
   font-family: $main-font;
   color: $main-font-color;
   background-color: $app-background-color;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 
   @include respond-to(phone) {
     font-size: 12px;

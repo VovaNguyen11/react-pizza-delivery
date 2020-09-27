@@ -5,7 +5,6 @@ $tabletLandscape: 1024px;
 $desktop: 1024px;
 $lgDesktop: 1400px;
 
-
 @mixin respond-to($media) {
   @if $media == phone {
     @media (min-device-width: $phone) and (max-device-width: $largePhone) {
@@ -18,16 +17,15 @@ $lgDesktop: 1400px;
   } @else if $media == desktop {
     @media (min-device-width: $desktop) and (max-device-width: $lgDesktop) {
       @content;
-    } 
+    }
   } @else if $media == lgDesktop {
-    @media (min-device-width: $lgDesktop) { 
+    @media (min-device-width: $lgDesktop) {
       @content;
-     }
+    }
   }
 }
 
-
-@function rem($pixels, $context: 18px) {
+@function rem($pixels, $context: $main-font-size) {
   @if (unitless($pixels)) {
     $pixels: $pixels * 1px;
   }
@@ -37,4 +35,16 @@ $lgDesktop: 1400px;
   }
 
   @return $pixels / $context * 1rem;
+}
+
+@mixin flex-s-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
