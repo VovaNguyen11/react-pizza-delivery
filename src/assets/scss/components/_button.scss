@@ -71,6 +71,7 @@
     background-color: #282828;
     color: #fff;
     font-weight: 700;
+    padding: 15px 25px;
     &:hover {
       background-color: lighten(#282828, 8%);
     }
@@ -91,6 +92,10 @@
       span {
         color: #fff;
       }
+      path,
+      rect {
+        fill: #fff;
+      }
     }
 
     &:active {
@@ -104,5 +109,13 @@
     span {
       color: #fff;
     }
+  }
+
+  &--circle {
+    @include flex-centered;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border-width: 2px;
   }
 }

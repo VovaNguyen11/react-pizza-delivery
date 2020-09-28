@@ -19,16 +19,15 @@
     border-radius: 15px;
     display: flex;
     margin-right: 15px;
-
-    svg {
-      position: absolute;
-      top: 10px;
-      right: -35px;
-      cursor: pointer;
-      transition: transform 0.1s ease-in-out 0s;
-      &:hover {
-        transform: scale(1.1);
-      }
+  }
+  &__close {
+    position: absolute;
+    top: 10px;
+    right: -35px;
+    cursor: pointer;
+    transition: transform 0.1s ease-in-out 0s;
+    &:hover {
+      transform: scale(1.1);
     }
   }
   &__content {
@@ -54,6 +53,36 @@
       }
       p {
         margin: 0;
+      }
+    }
+  }
+  &__options {
+    ul {
+      list-style: none;
+      padding: 3px;
+      display: flex;
+      border-radius: 8px;
+      overflow: hidden;
+      background-color: #f3f3f3;
+      user-select: none;
+
+      li {
+        text-align: center;
+        padding: 8px;
+        flex: 1;
+        font-size: rem(14);
+        font-weight: 600;
+        cursor: pointer;
+        &.active {
+          background: #ffffff;
+          box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+          border-radius: 5px;
+          cursor: auto;
+        }
+        &.disabled {
+          opacity: 0.4;
+          pointer-events: none;
+        }
       }
     }
   }

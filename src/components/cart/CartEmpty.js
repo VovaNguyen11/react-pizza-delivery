@@ -5,7 +5,7 @@ import cartEmptyImage from "../../assets/img/empty-cart.png"
 
 const EmptyCart = () => {
   return (
-    <div className="cart cart--empty">
+    <div className="cart--empty">
       <h3>
         Cart is empty{" "}
         <span role="img" aria-label="sad emoji">
@@ -13,7 +13,7 @@ const EmptyCart = () => {
         </span>
       </h3>
       <p>
-        Seems like you haven't ordered any pizza yet.
+        It seems like you haven't ordered any pizza yet.
         <br />
         Just go to main page and order our marvellous pizzas
       </p>

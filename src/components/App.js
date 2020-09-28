@@ -1,5 +1,5 @@
 import React, {lazy, Suspense} from "react"
-import {Route, Switch, useLocation} from "react-router-dom"
+import {Redirect, Route, Switch, useLocation} from "react-router-dom"
 
 import HomePage from "../pages/HomePage"
 import PizzaModal from "../components/pizza/PizzaModal"
@@ -17,8 +17,9 @@ const App = () => {
           <Switch location={background || location}>
             <Route exact path="/" children={<HomePage />} />
             <Route exact path="/cart" children={<CartPage />} />
+            <Route children={<Redirect to="/" />} />
           </Switch>
-          <Route path="/pizzas/:id" children={<PizzaModal />} />
+          {background && <Route path="/pizzas/:id" children={<PizzaModal />} />}
         </Suspense>
       </div>
     </div>

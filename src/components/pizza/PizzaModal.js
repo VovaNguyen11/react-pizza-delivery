@@ -1,18 +1,27 @@
-import React, {useRef, useEffect} from "react"
+import React, {useRef, useState, useEffect} from "react"
 import {connect} from "react-redux"
 import {useHistory, useParams} from "react-router-dom"
 import {disableBodyScroll, enableBodyScroll} from "body-scroll-lock"
+import classNames from "classnames"
 
 import {addPizzaCartAction} from "../../redux/actions/cart"
 
 import Button from "../Button"
+import closeIcon from "../../assets/img/close.svg"
+
+const availableTypes = ["traditional", "thin"]
+const availableSizes = [23, 30, 40]
 
 const PizzaModal = ({pizzas, addPizzaCartAction}) => {
   const modalRef = useRef()
   const history = useHistory()
   const {id} = useParams()
+
   let item = pizzas.find(p => p.id === Number(id))
   if (!item) item = {}
+
+  const [activeType, setActiveType] = useState(0)
+  const [activeSize, setActiveSize] = useState(0)
 
   useEffect(() => {
     const modalNode = modalRef.current
@@ -22,12 +31,36 @@ const PizzaModal = ({pizzas, addPizzaCartAction}) => {
     }
   }, [])
 
-  const closeModal = e => {
+  useEffect(() => {
+    if (Object.keys(item).length) {
+      setActiveType(item.types[0])
+      setActiveSize(item.sizes[0])
+    }
+  }, [item])
+
+  const closeModal = () => {
     history.goBack()
   }
 
-  const onAddToCart = e => {
-    addPizzaCartAction(item)
+  const onSelectType = index => () => {
+    setActiveType(index)
+  }
+  const onSelectSize = size => () => {
+    setActiveSize(size)
+  }
+
+  const onAddToCart = () => {
+    const {id, name, imageUrl, price} = item
+
+    const newItem = {
+      id,
+      name,
+      imageUrl,
+      price,
+      size: activeSize,
+      type: availableTypes[activeType],
+    }
+    addPizzaCartAction(newItem)
     history.push("/")
   }
 
@@ -41,24 +74,47 @@ const PizzaModal = ({pizzas, addPizzaCartAction}) => {
           <div>
             <h3>{item.name}</h3>
             <p>{item.description}</p>
+            <div className="modal__options">
+              <ul>
+                {availableTypes.map((type, index) => (
+                  <li
+                    key={type}
+                    className={classNames({
+                      active: activeType === index,
+                      disabled:
+                        Object.keys(item).length && !item.types.includes(index),
+                    })}
+                    onClick={onSelectType(index)}
+                  >
+                    {type}
+                  </li>
+                ))}
+              </ul>
+              <ul>
+                {availableSizes.map(size => (
+                  <li
+                    key={size}
+                    className={classNames({
+                      active: activeSize === size,
+                      disabled:
+                        Object.keys(item).length && !item.sizes.includes(size),
+                    })}
+                    onClick={onSelectSize(size)}
+                  >
+                    {size} cm
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
           <Button onClick={onAddToCart}>Add to Cart for {item.price}$</Button>
         </div>
-        <svg
-          width="25"
-          height="25"
-          viewBox="0 0 25 25"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
+        <img
+          src={closeIcon}
+          alt="close icon"
+          className="modal__close"
           onClick={closeModal}
-        >
-          <path
-            fillRule="evenodd"
-            clipRule="evenodd"
-            d="M9.84606 12.4986L0.552631 3.20519C-0.1806 2.47196 -0.1806 1.28315 0.552631 0.549923C1.28586 -0.183308 2.47466 -0.183308 3.20789 0.549923L12.5013 9.84335L21.792 0.552631C22.5253 -0.1806 23.7141 -0.1806 24.4473 0.552631C25.1805 1.28586 25.1805 2.47466 24.4473 3.20789L15.1566 12.4986L24.45 21.792C25.1832 22.5253 25.1832 23.7141 24.45 24.4473C23.7168 25.1805 22.528 25.1805 21.7947 24.4473L12.5013 15.1539L3.20519 24.45C2.47196 25.1832 1.28315 25.1832 0.549923 24.45C-0.183308 23.7168 -0.183308 22.528 0.549923 21.7947L9.84606 12.4986Z"
-            fill="white"
-          ></path>
-        </svg>
+        />
       </div>
     </div>
   )
