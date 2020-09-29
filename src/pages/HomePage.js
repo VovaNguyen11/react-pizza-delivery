@@ -16,6 +16,8 @@ const HomePage = ({
   fetchPizzasAction,
   setCategoryAction,
   setSortByAction,
+  orderCount,
+  orderPrice,
 }) => {
   useEffect(() => {
     fetchPizzasAction(activeCategory, activeSortBy)
@@ -23,7 +25,7 @@ const HomePage = ({
 
   return (
     <div className="container">
-      <Header />
+      <Header orderCount={orderCount} orderPrice={orderPrice} />
       <main className="content">
         <div className="content__top">
           <CategoriesBar
@@ -46,10 +48,12 @@ const HomePage = ({
   )
 }
 
-const mapStateToProps = ({filters, pizzas}) => ({
+const mapStateToProps = ({filters, pizzas, cart}) => ({
   activeCategory: filters.category,
   activeSortBy: filters.sortBy,
   pizzas,
+  orderCount: cart.orderCount,
+  orderPrice: cart.orderPrice,
 })
 
 export default connect(mapStateToProps, {

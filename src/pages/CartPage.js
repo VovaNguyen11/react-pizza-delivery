@@ -9,7 +9,11 @@ import CartEmpty from "../components/cart/CartEmpty"
 import CartList from "../components/cart/CartList"
 import Button from "../components/Button"
 
-const CartPage = ({items, clearCartAction}) => {
+const CartPage = ({items, orderPrice, orderCount, clearCartAction}) => {
+  const onClearCart = () => {
+    clearCartAction()
+  }
+  
   return (
     <div className="container">
       <header className="header">
@@ -17,7 +21,7 @@ const CartPage = ({items, clearCartAction}) => {
       </header>
 
       <main className="cart">
-        {items.length ? (
+        {Object.keys(items).length ? (
           <>
             <div className="cart__top">
               <h2 className="cart__heading">
@@ -52,7 +56,7 @@ const CartPage = ({items, clearCartAction}) => {
                 </svg>
                 Cart
               </h2>
-              <div className="cart__clear" onClick={() => clearCartAction()}>
+              <div className="cart__clear" onClick={onClearCart}>
                 <svg
                   width="20"
                   height="20"
@@ -98,10 +102,10 @@ const CartPage = ({items, clearCartAction}) => {
             <div className="cart__bottom">
               <div className="cart__bottom-details">
                 <span>
-                  Всего пицц: <b>3 шт.</b>
+                  Total pizzas: <b>{orderCount}</b>
                 </span>
                 <span>
-                  Сумма заказа: <b>144 $</b>
+                  Order sum: <b>{orderPrice}</b>
                 </span>
               </div>
               <div className="cart__bottom-actions">
@@ -140,7 +144,9 @@ const CartPage = ({items, clearCartAction}) => {
   )
 }
 const mapStateToProps = ({cart}) => ({
-  items: cart.items,
+  items: cart.order,
+  orderPrice: cart.orderPrice,
+  orderCount: cart.orderCount,
 })
 
 export default connect(mapStateToProps, {clearCartAction})(CartPage)

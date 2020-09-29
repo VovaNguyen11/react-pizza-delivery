@@ -19,7 +19,7 @@ const App = () => {
             <Route exact path="/cart" children={<CartPage />} />
             <Route children={<Redirect to="/" />} />
           </Switch>
-          {background && <Route path="/pizzas/:id" children={<PizzaModal />} />}
+          {background && <Route path="/pizzas/:id" component={PizzaModal} />}
         </Suspense>
       </div>
     </div>

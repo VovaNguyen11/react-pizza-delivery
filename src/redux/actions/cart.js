@@ -13,3 +13,13 @@ export const removePizzaCartAction = id => ({
 export const clearCartAction = () => ({
   type: C.CLEAR_CART,
 })
+
+export const plusPizzaCartAction = id => ({
+  type: C.PLUS_PIZZA_CART,
+  payload: id,
+})
+
+export const minusPizzaCartAction = id => ({
+  type: C.MINUS_PIZZA_CART,
+  payload: id,
+})

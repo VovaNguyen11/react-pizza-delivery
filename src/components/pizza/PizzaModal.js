@@ -1,6 +1,5 @@
 import React, {useRef, useState, useEffect} from "react"
 import {connect} from "react-redux"
-import {useHistory, useParams} from "react-router-dom"
 import {disableBodyScroll, enableBodyScroll} from "body-scroll-lock"
 import classNames from "classnames"
 
@@ -12,13 +11,8 @@ import closeIcon from "../../assets/img/close.svg"
 const availableTypes = ["traditional", "thin"]
 const availableSizes = [23, 30, 40]
 
-const PizzaModal = ({pizzas, addPizzaCartAction}) => {
+const PizzaModal = ({pizzas, item, addPizzaCartAction, history}) => {
   const modalRef = useRef()
-  const history = useHistory()
-  const {id} = useParams()
-
-  let item = pizzas.find(p => p.id === Number(id))
-  if (!item) item = {}
 
   const [activeType, setActiveType] = useState(0)
   const [activeSize, setActiveSize] = useState(0)
@@ -32,11 +26,11 @@ const PizzaModal = ({pizzas, addPizzaCartAction}) => {
   }, [])
 
   useEffect(() => {
-    if (Object.keys(item).length) {
+    if (pizzas.length) {
       setActiveType(item.types[0])
       setActiveSize(item.sizes[0])
     }
-  }, [item])
+  }, [pizzas, item])
 
   const closeModal = () => {
     history.goBack()
@@ -51,14 +45,15 @@ const PizzaModal = ({pizzas, addPizzaCartAction}) => {
 
   const onAddToCart = () => {
     const {id, name, imageUrl, price} = item
+    const currentType = availableTypes[activeType]
 
     const newItem = {
-      id,
+      id: `${id}_${currentType}_${activeSize}`,
       name,
       imageUrl,
       price,
       size: activeSize,
-      type: availableTypes[activeType],
+      type: currentType,
     }
     addPizzaCartAction(newItem)
     history.push("/")
@@ -120,8 +115,13 @@ const PizzaModal = ({pizzas, addPizzaCartAction}) => {
   )
 }
 
-const mapStateToProps = ({pizzas}) => ({
-  pizzas,
-})
+const mapStateToProps = ({pizzas}, ownProps) => {
+  const id = ownProps.match.params.id
+
+  return {
+    pizzas,
+    item: id && pizzas.length ? pizzas.find(c => c.id === Number(id)) : {},
+  }
+}
 
 export default connect(mapStateToProps, {addPizzaCartAction})(PizzaModal)
