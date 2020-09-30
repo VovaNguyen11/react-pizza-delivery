@@ -7,18 +7,18 @@
       "description": "Savory pepperoni, large portion of mozzarella, tomato sauce",
       "types": [0, 1],
       "sizes": [23],
-      "price": 9.99,
+      "price": { "23": 9.99 },
       "category": 1,
       "rating": 14
     },
     {
       "id": 1,
       "imageUrl": "https://dodopizza.azureedge.net/static/Img/Products/Pizza/ru-RU/2ffc31bb-132c-4c99-b894-53f7107a1441.jpg",
-      "name": "Cheesy",
+      "name": "Cheese",
       "description": "Large portion of mozzarella, tomato sauce",
       "types": [0],
       "sizes": [23, 40],
-      "price": 8,
+      "price": { "23": 7.99, "40": 13.99 },
       "category": 4,
       "rating": 6
     },
@@ -30,7 +30,7 @@
       "description": "Chicken, BBQ sauce, tomato sauce, red onion, mozzarella, bacon",
       "types": [0],
       "sizes": [23, 40],
-      "price": 10.49,
+      "price": { "23": 10.49, "40": 18.99 },
       "category": 1,
       "rating": 4
     },
@@ -41,7 +41,7 @@
       "description": "Large portion of mozzarella, tomatoes, italian herbs, tomato sauce",
       "types": [1],
       "sizes": [23, 30, 40],
-      "price": 9.99,
+      "price": { "23": 9.99, "30": "14.49", "40": 18.99 },
       "category": 3,
       "rating": 2
     },
@@ -52,7 +52,7 @@
       "description": "Meat sauce bolognese, mozzarella, red onion, pickles, tomatoes, burger sauce",
       "types": [0, 1],
       "sizes": [23, 30, 40],
-      "price": 12.49,
+      "price": { "23": 12.49, "30": 15.99 },
       "category": 2,
       "rating": 8
     },
@@ -63,7 +63,7 @@
       "description": "Italian herbs, tomato sauce, cheese cubes, mushrooms, bell peppers, red onions, mozzarella, olives, tomatoes",
       "types": [0],
       "sizes": [30, 40],
-      "price": 11.99,
+      "price": { "30": 11.99, "40": 14.99 },
       "category": 4,
       "rating": 2
     },
@@ -74,7 +74,7 @@
       "description": "Spicy chicken, tomato sauce, bell peppers, red onion, mozzarella, hot jalapeno peppers, tomatoes, salsa sauce",
       "types": [0, 1],
       "sizes": [23, 30, 40],
-      "price": 15,
+      "price": { "23": 14.99, "30": 17.49, "40": 22.49 },
       "category": 3,
       "rating": 9
     },
@@ -85,7 +85,7 @@
       "description": "Burger sauce, chicken, ranch sauce, chorizo, bell peppers, red onions, mozzarella, tomatoes, garlic",
       "types": [0, 1],
       "sizes": [23, 30, 40],
-      "price": 13.99,
+      "price": {"23": 13.99, "30": 17.99, "40": 23.49},
       "category": 1,
       "rating": 10
     },
@@ -96,7 +96,7 @@
       "description": "An increased portion of mozzarella, ham, spicy pepperoni, cheese cubes, tomatoes, mushrooms, tomato sauce, Italian herbs",
       "types": [0, 1],
       "sizes": [23, 30, 40],
-      "price": 12.49,
+      "price": {"23":12.49, "30": 16.49, "40": 19.99},
       "category": 2,
       "rating": 10
     },
@@ -107,7 +107,7 @@
       "description": "Pineapples, lingonberries, condensed milk",
       "types": [0, 1],
       "sizes": [23, 30, 40],
-      "price": 9.99,
+      "price": {"23":9.99, "30": 13.99, "40": 17.49},
       "category": 4,
       "rating": 7
     },
@@ -118,7 +118,7 @@
       "description": "Pesto sauce, cream sauce, chicken, cheese cubes, cherry tomatoes, mozzarella",
       "types": [0, 1],
       "sizes": [23, 30, 40],
-      "price": 11.99,
+      "price": {"23": 11.99, "30": 16.49, "40": 21.99},
       "category": 1,
       "rating": 4
     }

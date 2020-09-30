@@ -22,7 +22,11 @@ const cart = (state = initState, {type, payload}) => {
             itemPrice: prevItem.itemPrice + price,
             itemCount: ++prevItem.itemCount,
           }
-        : {item: payload, itemCount: 1, itemPrice: price}
+        : {
+            item: payload,
+            itemCount: 1,
+            itemPrice: price,
+          }
 
       return {
         order: {...order, [id]: currentItem},

@@ -51,7 +51,7 @@ const PizzaModal = ({pizzas, item, addPizzaCartAction, history}) => {
       id: `${id}_${currentType}_${activeSize}`,
       name,
       imageUrl,
-      price,
+      price: price[activeSize],
       size: activeSize,
       type: currentType,
     }
@@ -102,7 +102,9 @@ const PizzaModal = ({pizzas, item, addPizzaCartAction, history}) => {
               </ul>
             </div>
           </div>
-          <Button onClick={onAddToCart}>Add to Cart for {item.price}$</Button>
+          <Button onClick={onAddToCart}>
+            Add to Cart for {item.price[activeSize]}$
+          </Button>
         </div>
         <img
           src={closeIcon}
