@@ -60,9 +60,11 @@ const cart = (state = initState, {type, payload}) => {
     case C.MINUS_PIZZA_CART: {
       let {order, orderPrice, orderCount} = state
       const currentItem = order[payload]
+
       if (currentItem.itemCount === 1) {
         return state
       }
+
       const currentItemPrice = currentItem.item.price
 
       const newItemPrice = roundPrice(currentItem.itemPrice - currentItemPrice)

@@ -1,5 +1,6 @@
 import React, {useEffect} from "react"
 import {connect} from "react-redux"
+import PropTypes from "prop-types"
 
 import {fetchPizzasAction} from "../redux/actions/pizzas"
 import {setCategoryAction, setSortByAction} from "../redux/actions/filters"
@@ -46,6 +47,34 @@ const HomePage = ({
       </main>
     </div>
   )
+}
+
+HomePage.propTypes = {
+  pizzas: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      imageUrl: PropTypes.string,
+      name: PropTypes.string,
+      sizes: PropTypes.arrayOf(PropTypes.number),
+      types: PropTypes.arrayOf(PropTypes.number),
+      price: PropTypes.objectOf(PropTypes.number),
+      description: PropTypes.string,
+    })
+  ).isRequired,
+  activeCategory: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+  }),
+  activeSortBy: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    order: PropTypes.string.isRequired,
+  }).isRequired,
+  orderCount: PropTypes.number.isRequired,
+  orderPrice: PropTypes.number.isRequired,
+  fetchPizzasAction: PropTypes.func.isRequired,
+  setCategoryAction: PropTypes.func.isRequired,
+  setSortByAction: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = ({filters, pizzas, cart}) => ({

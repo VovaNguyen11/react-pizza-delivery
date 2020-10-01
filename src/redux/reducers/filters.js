@@ -12,7 +12,6 @@ const initialState = {
 const filters = (state = initialState, {type, payload}) => {
   switch (type) {
     case C.SET_CATEGORY:
-      console.log("hello")
       return {...state, category: payload}
     case C.SET_SORT_BY:
       return {...state, sortBy: {...payload}}

@@ -16,7 +16,7 @@ const App = () => {
         <Suspense fallback={<div>Loading..</div>}>
           <Switch location={background || location}>
             <Route exact path="/" children={<HomePage />} />
-            <Route exact path="/cart" children={<CartPage />} />
+            <Route path="/cart" children={<CartPage />} />
             <Route children={<Redirect to="/" />} />
           </Switch>
           {background && <Route path="/pizzas/:id" component={PizzaModal} />}

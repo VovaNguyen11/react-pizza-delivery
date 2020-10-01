@@ -1,4 +1,5 @@
 import React, {memo} from "react"
+import PropTypes from "prop-types"
 
 import PizzaItem from "./PizzaItem"
 
@@ -10,6 +11,10 @@ const PizzaList = ({pizzas}) => {
       ))}
     </div>
   )
+}
+
+PizzaList.propTypes = {
+  pizzas: PropTypes.arrayOf(PropTypes.object).isRequired,
 }
 
 PizzaList.defaultProps = {

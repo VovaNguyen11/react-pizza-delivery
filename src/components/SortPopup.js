@@ -1,4 +1,5 @@
-import React from "react"
+import React, {memo} from "react"
+import PropTypes from "prop-types"
 
 import useOutsideClick from "../hooks/useOutsideClick"
 
@@ -56,4 +57,13 @@ const SortPopup = ({setSortByAction, activeSortBy}) => {
   )
 }
 
-export default SortPopup
+SortPopup.propTypes = {
+  setSortByAction: PropTypes.func.isRequired,
+  activeSortBy: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    order: PropTypes.string.isRequired,
+  }).isRequired,
+}
+
+export default memo(SortPopup)

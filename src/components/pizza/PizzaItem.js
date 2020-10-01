@@ -1,4 +1,5 @@
 import React, {memo} from "react"
+import PropTypes from "prop-types"
 import {Link, useLocation} from "react-router-dom"
 
 import Button from "../Button"
@@ -6,6 +7,7 @@ import Button from "../Button"
 const PizzaItem = ({pizza}) => {
   let location = useLocation()
   const minPrice = pizza.price[pizza.sizes[0]]
+
   return (
     <div className="pizza">
       <div className="pizza__main">
@@ -35,6 +37,18 @@ const PizzaItem = ({pizza}) => {
       </div>
     </div>
   )
+}
+
+PizzaItem.propTypes = {
+  pizza: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    imageUrl: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    sizes: PropTypes.arrayOf(PropTypes.number).isRequired,
+    types: PropTypes.arrayOf(PropTypes.number).isRequired,
+    price: PropTypes.objectOf(PropTypes.number).isRequired,
+    description: PropTypes.string.isRequired,
+  }).isRequired,
 }
 
 export default memo(PizzaItem)

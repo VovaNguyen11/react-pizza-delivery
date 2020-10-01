@@ -1,5 +1,6 @@
-import React from "react"
+import React, {memo} from "react"
 import {connect} from "react-redux"
+import PropTypes from "prop-types"
 
 import {
   removePizzaCartAction,
@@ -67,8 +68,22 @@ const CartItem = ({
   )
 }
 
+CartItem.propTypes = {
+  id: PropTypes.number,
+  imageUrl: PropTypes.string,
+  name: PropTypes.string,
+  sizes: PropTypes.arrayOf(PropTypes.string),
+  types: PropTypes.arrayOf(PropTypes.number),
+  price: PropTypes.objectOf(PropTypes.number),
+  itemCount: PropTypes.number.isRequired,
+  itemPrice: PropTypes.number.isRequired,
+  removePizzaCartAction: PropTypes.func.isRequired,
+  plusPizzaCartAction: PropTypes.func.isRequired,
+  minusPizzaCartAction: PropTypes.func.isRequired,
+}
+
 export default connect(state => state, {
   removePizzaCartAction,
   plusPizzaCartAction,
   minusPizzaCartAction,
-})(CartItem)
+})(memo(CartItem))

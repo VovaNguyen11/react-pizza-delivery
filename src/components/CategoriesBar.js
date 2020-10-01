@@ -1,4 +1,4 @@
-import React from "react"
+import React, {memo} from "react"
 import PropTypes from "prop-types"
 import classNames from "classnames"
 
@@ -32,7 +32,7 @@ const CategoriesBar = ({activeCategory, setCategoryAction}) => {
           <li className="categories__item" key={c.id}>
             <Button
               className={classNames("button--category", {
-                active: activeCategory !== null && activeCategory.id === c.id,
+                active: activeCategory?.id === c.id,
               })}
               onClick={onCategoryClick(c)}
             >
@@ -53,4 +53,4 @@ CategoriesBar.propTypes = {
   setCategoryAction: PropTypes.func.isRequired,
 }
 
-export default CategoriesBar
+export default memo(CategoriesBar)

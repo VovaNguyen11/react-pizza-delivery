@@ -41,7 +41,7 @@
       "description": "Large portion of mozzarella, tomatoes, italian herbs, tomato sauce",
       "types": [1],
       "sizes": [23, 30, 40],
-      "price": { "23": 9.99, "30": "14.49", "40": 18.99 },
+      "price": { "23": 9.99, "30": 14.49, "40": 18.99 },
       "category": 3,
       "rating": 2
     },

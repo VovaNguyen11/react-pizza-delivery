@@ -1,4 +1,5 @@
-import React from "react"
+import React, {memo} from "react"
+import PropTypes from "prop-types"
 
 import {Link} from "react-router-dom"
 
@@ -19,4 +20,9 @@ const Header = ({orderPrice, orderCount}) => {
   )
 }
 
-export default Header
+Header.propTypes = {
+  orderPrice: PropTypes.number.isRequired,
+  orderCount: PropTypes.number.isRequired,
+}
+
+export default memo(Header)

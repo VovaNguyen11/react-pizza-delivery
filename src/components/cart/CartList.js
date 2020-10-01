@@ -1,4 +1,4 @@
-import React from "react"
+import React, {memo} from "react"
 import CartItem from "./CartItem"
 
 const CartList = ({items}) => {
@@ -15,8 +15,9 @@ const CartList = ({items}) => {
           itemCount={items[item.id].itemCount}
         />
       ))}
+      {console.log("cartlist")}
     </div>
   )
 }
 
-export default CartList
+export default memo(CartList)
