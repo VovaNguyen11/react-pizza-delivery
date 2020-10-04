@@ -43,6 +43,7 @@
   "devDependencies": {
     "body-scroll-lock": "^3.1.5",
     "classnames": "^2.2.6",
-    "node-sass": "^4.14.1"
+    "node-sass": "^4.14.1",
+    "react-content-loader": "^5.1.2"
   }
 }

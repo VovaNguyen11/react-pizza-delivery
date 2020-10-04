@@ -1,11 +1,16 @@
 import C from "../types_constants"
 import {getPizzas} from "../../services/api/pizzaApi"
 
-export const setPizzas = data => ({type: C.SET_PIZZAS, payload: data})
+const setPizzas = data => ({type: C.SET_PIZZAS, payload: data})
 
-export const fetchPizzasAction = (activeCat, sortBy) => dispatch =>
+const setLoading = payload => ({type: C.SET_LOADING, payload})
+
+export const fetchPizzasAction = (activeCat, sortBy) => dispatch => {
+  dispatch(setLoading(true))
   getPizzas(activeCat, sortBy)
     .then(data => dispatch(setPizzas(data)))
+    .then(dispatch(setLoading(false)))
     .catch(err => {
       throw err
     })
+}

@@ -132,8 +132,11 @@ const mapStateToProps = ({pizzas}, {match}) => {
   const id = match.params.id
 
   return {
-    pizzas,
-    item: id && pizzas.length ? pizzas.find(c => c.id === Number(id)) : {},
+    pizzas: pizzas.items,
+    item:
+      id && pizzas.items.length
+        ? pizzas.items.find(c => c.id === Number(id))
+        : {},
   }
 }
 

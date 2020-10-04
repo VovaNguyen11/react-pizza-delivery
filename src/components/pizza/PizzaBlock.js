@@ -1,10 +1,11 @@
 import React, {memo} from "react"
 import PropTypes from "prop-types"
 import {Link, useLocation} from "react-router-dom"
+import {connect} from "react-redux"
 
 import Button from "../Button"
 
-const PizzaItem = ({pizza}) => {
+const PizzaBlock = ({pizza, isLoading}) => {
   let location = useLocation()
   const minPrice = pizza.price[pizza.sizes[0]]
 
@@ -17,7 +18,11 @@ const PizzaItem = ({pizza}) => {
             state: {background: location},
           }}
         >
-          <img src={pizza.imageUrl} alt="" className="pizza__preview" />
+          <img
+            src={pizza.imageUrl}
+            alt={pizza.name}
+            className="pizza__preview"
+          />
         </Link>
         <h3 className="pizza__name">{pizza.name}</h3>
         <p className="pizza__desc">{pizza.description}</p>
@@ -39,7 +44,7 @@ const PizzaItem = ({pizza}) => {
   )
 }
 
-PizzaItem.propTypes = {
+PizzaBlock.propTypes = {
   pizza: PropTypes.shape({
     id: PropTypes.number.isRequired,
     imageUrl: PropTypes.string.isRequired,
@@ -49,6 +54,11 @@ PizzaItem.propTypes = {
     price: PropTypes.objectOf(PropTypes.number).isRequired,
     description: PropTypes.string.isRequired,
   }).isRequired,
+  isLoading: PropTypes.bool.isRequired,
 }
 
-export default memo(PizzaItem)
+const mapStateToProps = ({pizzas}) => ({
+  isLoading: pizzas.isLoading,
+})
+
+export default connect(mapStateToProps)(memo(PizzaBlock))

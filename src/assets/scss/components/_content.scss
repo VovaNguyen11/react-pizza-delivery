@@ -8,4 +8,11 @@
     font-weight: bold;
     margin: 15px 0;
   }
+  &__items {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 45px 30px;
+    padding: 25px 0;
+    box-sizing: border-box;
+  }
 }
