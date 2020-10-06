@@ -9,8 +9,8 @@ const pizzas = (state = inittialState, {type, payload}) => {
   switch (type) {
     case C.SET_PIZZAS:
       return {
-        ...state,
         items: payload,
+        isLoading: false,
       }
     case C.SET_LOADING:
       return {

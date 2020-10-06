@@ -20,10 +20,11 @@ html {
   background-color: $app-background-color;
 
   @include respond-to(phone) {
-    font-size: 12px;
+    padding: 15px 0;
+    font-size: 14px;
   }
   @include respond-to(tablet) {
-    font-size: 14px;
+    font-size: 15px;
   }
   @include respond-to(desktop) {
     font-size: 16px;
@@ -40,8 +41,13 @@ html {
   background-color: #fff;
   margin: 0 auto;
   border-radius: 10px;
-  padding: 0 15px;
+  padding: 0 30px;
   box-sizing: border-box;
+
+  @include respond-to(phone) {
+    padding: 0;
+    min-height: calc(100vh - 30px);
+  }
 }
 
 .container {
@@ -64,5 +70,13 @@ html {
   }
   @include respond-to(lgDesktop) {
     max-width: 1400px;
+  }
+}
+
+@include respond-to(phone) {
+  .Toastify__toast-container--bottom-left {
+    width: 50%;
+    bottom: 1em;
+    left: 1em;
   }
 }

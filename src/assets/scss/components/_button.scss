@@ -1,6 +1,6 @@
 .button {
   display: inline-block;
-  padding: 10px 20px;
+  padding: 10px 25px;
   background-color: $main-color;
   border-radius: 25px;
   text-align: center;
@@ -37,20 +37,48 @@
 
     img {
       margin-right: 5px;
+      display: block;
     }
 
     span {
       font-weight: 600;
       font-size: rem(16);
     }
+    &-mobile {
+      @include flex-centered;
+      position: fixed;
+      width: 50px;
+      height: 50px;
+      bottom: 20px;
+      right: 25px;
+      border-radius: 50%;
+      padding: 0;
+      box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 20px;
+      user-select: none;
+
+      img {
+        width: 50%;
+      }
+
+      span {
+        position: absolute;
+        @include flex-centered;
+        top: -5px;
+        right: -5px;
+        min-width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: rgb(255, 255, 255);
+        border: 1px solid $main-color;
+        color: $main-color;
+      }
+    }
   }
   &--category {
     color: $main-font-color;
-    min-width: 100px;
     font-weight: bold;
-    font-size: rem(20);
+    font-size: rem(18);
     background: #f9f9f9;
-    padding: 13px 20px;
 
     &:hover,
     &:focus {

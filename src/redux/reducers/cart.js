@@ -1,7 +1,22 @@
 import C from "../types_constants"
 
 const initState = {
-  order: {},
+  order: {
+    "0_traditional_23": {
+      item: {
+        id: "0_traditional_23",
+        name: "Pepperoni",
+        imageUrl:
+          "https://cdn.dodostatic.net/static/Img/Products/Pizza/ru-RU/d2e337e9-e07a-4199-9cc1-501cc44cb8f8.jpg",
+        price: 9.99,
+        size: 23,
+        type: "traditional",
+      },
+      itemCount: 1,
+      itemPrice: 9.99,
+    },
+  },
+
   orderPrice: 0,
   orderCount: 0,
 }

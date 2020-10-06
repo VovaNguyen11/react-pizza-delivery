@@ -2,14 +2,21 @@
   max-width: 760px;
   margin: 0 auto;
   padding: 50px 0 80px;
+  @include respond-to(phone) {
+    padding: 15px 0;
+  }
+
   &__top {
     @include flex-s-between;
     margin: 0 0 30px;
+    @include respond-to(phone) {
+      margin: 0 0 10px;
+    }
   }
   &__heading {
     display: flex;
     align-items: center;
-    font-size: 32px;
+    font-size: rem(26px);
     margin: 0;
 
     svg {
@@ -56,23 +63,28 @@
 
   &__list {
     display: grid;
-    grid-template-rows: repeat(auto, minmax(0, 1fr));
     margin-bottom: 15px;
   }
   &__item {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
+    @include flex-s-between;
     border-top: 1px solid #eeeeee;
     padding: 20px 0;
+    position: relative;
+
+    @include respond-to(phone) {
+      flex-direction: column;
+    }
 
     & > *:not(:first-child) {
-      width: 25%;
       text-align: center;
     }
     &-info {
+      width: 50%;
       display: flex;
       align-items: center;
+      @include respond-to(phone) {
+        width: 100%;
+      }
 
       h3 {
         margin: 0 0 5px;
@@ -84,17 +96,33 @@
         color: $alt-font-color;
       }
       img {
-        width: 15%;
-        height: auto;
+        width: 64px;
+        height: 64px;
         display: block;
         margin-right: 10px;
       }
     }
+
+    &-manage {
+      @include flex-s-between;
+      width: 25%;
+      @include respond-to(phone) {
+        align-self: flex-end;
+        width: 77%;
+      }
+    }
+
     &-count {
       display: flex;
       align-items: center;
       justify-content: space-around;
       font-weight: bold;
+      span {
+        margin: 0 10px;
+      }
+      @include respond-to(phone) {
+        order: 2;
+      }
     }
     &-price {
       font-weight: bold;
@@ -113,6 +141,11 @@
           transform: rotate(10deg);
         }
       }
+      @include respond-to(phone) {
+        position: absolute;
+        right: 35px;
+        top: 37px;
+      }
     }
   }
 
@@ -120,6 +153,10 @@
     &-details {
       @include flex-s-between;
       margin-bottom: 50px;
+      @include respond-to(phone) {
+        margin-bottom: 0;
+        flex-direction: column;
+      }
       span {
         font-size: rem(20);
         &:last-of-type {
@@ -127,10 +164,24 @@
             color: $main-color;
           }
         }
+        @include respond-to(phone) {
+          display: flex;
+          justify-content: space-between;
+          width: 100%;
+          margin-bottom: 15px;
+        }
       }
     }
     &-actions {
       @include flex-s-between;
+      @include respond-to(phone) {
+        flex-direction: column;
+
+        .button {
+          margin-bottom: 20px;
+          width: 100%;
+        }
+      }
       span {
         font-weight: 600;
         font-size: rem(16);
@@ -141,6 +192,7 @@
       .go-back-btn {
         @include flex-centered;
         padding: 15px 25px;
+        box-sizing: border-box;
         span {
           color: $light-font-color;
         }
@@ -171,9 +223,17 @@
     margin: 0 auto;
     text-align: center;
 
+    @include respond-to(phone) {
+      width: 100%;
+    }
+
     & > *:not(:last-child) {
       margin: 0 auto 30px;
+      @include respond-to(phone) {
+        margin: 0 auto 20px;
+      }
     }
+
     h3 {
       font-size: rem(30);
       margin: 0 0 20px;
@@ -189,6 +249,9 @@
       width: 50%;
       height: auto;
       display: block;
+      @include respond-to(phone) {
+        width: 80%;
+      }
     }
 
     span {

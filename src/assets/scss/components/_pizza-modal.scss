@@ -7,18 +7,31 @@
   top: 0;
   background-color: rgba(0, 0, 0, 0.5);
   overflow-y: auto;
+  @include respond-to(phone) {
+    align-items: flex-end;
+  }
 
   &__container {
     position: relative;
+    display: flex;
     left: 0;
     right: 0;
-    margin: 50px 0;
-    padding: 10px;
+
     width: 50%;
     background: #fff;
     border-radius: 15px;
-    display: flex;
-    margin-right: 15px;
+    @include respond-to(phone) {
+      overflow: auto;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      border-radius: 15px 15px 0 0;
+    }
+    @include respond-to(tablet) {
+      width: 80%;
+      bottom: 10%;
+    }
   }
   &__close {
     position: absolute;
@@ -29,15 +42,42 @@
     &:hover {
       transform: scale(1.1);
     }
+
+    @include respond-to(phone) {
+      @include flex-centered;
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      right: unset;
+      box-shadow: rgba(0, 0, 0, 0.12) 0px 0px 12px;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      z-index: 1;
+      svg,
+      path {
+        width: 20px;
+        height: 20px;
+        fill: $main-font-color;
+      }
+    }
   }
   &__content {
     &-left {
       width: 60%;
       padding: 50px;
+
       img {
         width: 100%;
         height: auto;
         display: block;
+        @include respond-to(phone) {
+          margin-left: 5%;
+        }
+      }
+      @include respond-to(phone) {
+        width: 80%;
+        padding: 25px;
       }
     }
     &-right {
@@ -46,6 +86,11 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      box-sizing: border-box;
+
+      @include respond-to(phone) {
+        width: 100%;
+      }
 
       h3 {
         font-size: 1.5rem;

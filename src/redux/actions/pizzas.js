@@ -9,7 +9,6 @@ export const fetchPizzasAction = (activeCat, sortBy) => dispatch => {
   dispatch(setLoading(true))
   getPizzas(activeCat, sortBy)
     .then(data => dispatch(setPizzas(data)))
-    .then(dispatch(setLoading(false)))
     .catch(err => {
       throw err
     })

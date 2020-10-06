@@ -1,6 +1,9 @@
 import React, {lazy, Suspense} from "react"
 import {Redirect, Route, Switch, useLocation} from "react-router-dom"
 
+import {ToastContainer} from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
+
 import HomePage from "../pages/HomePage"
 import PizzaModal from "../components/pizza/PizzaModal"
 
@@ -21,6 +24,17 @@ const App = () => {
           </Switch>
           {background && <Route path="/pizzas/:id" component={PizzaModal} />}
         </Suspense>
+        <ToastContainer
+          position="bottom-left"
+          autoClose={2500}
+          hideProgressBar
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          closeButton={false}
+        />
       </div>
     </div>
   )

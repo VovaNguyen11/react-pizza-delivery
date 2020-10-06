@@ -106,7 +106,7 @@ const CartPage = ({items, orderPrice, orderCount, clearCartAction}) => {
                   Total pizzas: <b>{orderCount}</b>
                 </span>
                 <span>
-                  Order sum: <b>{orderPrice}</b>
+                  Order sum: <b>{orderPrice} $</b>
                 </span>
               </div>
               <div className="cart__bottom-actions">

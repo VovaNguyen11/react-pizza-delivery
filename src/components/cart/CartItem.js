@@ -33,24 +33,26 @@ const CartItem = ({
           </p>
         </div>
       </div>
-      <div className="cart__item-count">
-        <Button className="button--circle" outline onClick={onMinusItem(id)}>
-          <svg width="10" height="10">
-            <rect fill="#60d060" y="4" width="10" height="2" rx="1"></rect>
-          </svg>
-        </Button>
-        <span>{itemCount}</span>
-        <Button className="button--circle" outline onClick={onPlusItem(id)}>
-          <svg width="10" height="10">
-            <g fill="#60d060">
-              <rect x="4" width="2" height="10" ry="1"></rect>
-              <rect y="4" width="10" height="2" rx="1"></rect>
-            </g>
-          </svg>
-        </Button>
-      </div>
-      <div className="cart__item-price">
-        <span>{itemPrice} $</span>
+      <div className="cart__item-manage">
+        <div className="cart__item-count">
+          <Button className="button--circle" outline onClick={onMinusItem(id)}>
+            <svg width="10" height="10">
+              <rect fill="#60d060" y="4" width="10" height="2" rx="1"></rect>
+            </svg>
+          </Button>
+          <span>{itemCount}</span>
+          <Button className="button--circle" outline onClick={onPlusItem(id)}>
+            <svg width="10" height="10">
+              <g fill="#60d060">
+                <rect x="4" width="2" height="10" ry="1"></rect>
+                <rect y="4" width="10" height="2" rx="1"></rect>
+              </g>
+            </svg>
+          </Button>
+        </div>
+        <div className="cart__item-price">
+          <span>{itemPrice} $</span>
+        </div>
       </div>
       <div className="cart__item-remove" onClick={onRemoveItem(id)}>
         <svg width="20" height="20" fill="none" className="sc-157hvfs-7 ZGosY">

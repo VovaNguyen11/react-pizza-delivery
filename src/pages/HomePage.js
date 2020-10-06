@@ -10,6 +10,7 @@ import Header from "../components/Header"
 import PizzaBlock from "../components/pizza/PizzaBlock"
 import SortPopup from "../components/SortPopup"
 import PizzaPreloader from "../components/pizza/PizzaPreloader"
+import {memo} from "react"
 
 const HomePage = ({
   pizzas,
@@ -28,6 +29,7 @@ const HomePage = ({
 
   return (
     <div className="container">
+      {console.log(isLoading)}
       <Header orderCount={orderCount} orderPrice={orderPrice} />
       <main className="content">
         <div className="content__top">
@@ -97,4 +99,4 @@ export default connect(mapStateToProps, {
   fetchPizzasAction,
   setCategoryAction,
   setSortByAction,
-})(HomePage)
+})(memo(HomePage))

@@ -2,11 +2,17 @@
   &__top {
     @include flex-s-between;
     padding: 20px 0;
+    @include respond-to(phone) {
+      flex-direction: column;
+    }
   }
   &__title {
     font-size: rem(36);
     font-weight: bold;
     margin: 15px 0;
+    @include respond-to(phone) {
+      margin: 0;
+    }
   }
   &__items {
     display: grid;
@@ -14,5 +20,18 @@
     gap: 45px 30px;
     padding: 25px 0;
     box-sizing: border-box;
+    justify-items: center;
+
+    @include respond-to(phone) {
+      grid-template-columns: 1fr;
+      gap: 15px 0;
+    }
+    @include respond-to(tablet) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 15px 10px;
+    }
+    @include respond-to(desktop) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
   }
 }
