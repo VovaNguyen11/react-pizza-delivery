@@ -15,7 +15,6 @@ const CartList = ({items}) => {
           itemCount={items[item.id].itemCount}
         />
       ))}
-      {console.log("cartlist")}
     </div>
   )
 }

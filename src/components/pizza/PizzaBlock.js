@@ -5,7 +5,7 @@ import {connect} from "react-redux"
 
 import Button from "../Button"
 
-const PizzaBlock = ({pizza, isLoading}) => {
+const PizzaBlock = ({pizza}) => {
   let location = useLocation()
   const minPrice = pizza.price[pizza.sizes[0]]
 

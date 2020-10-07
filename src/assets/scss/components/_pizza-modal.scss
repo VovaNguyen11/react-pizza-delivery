@@ -16,8 +16,7 @@
     display: flex;
     left: 0;
     right: 0;
-
-    width: 50%;
+    width: 60%;
     background: #fff;
     border-radius: 15px;
     @include respond-to(phone) {
@@ -66,14 +65,13 @@
     &-left {
       width: 60%;
       padding: 50px;
+      box-sizing: border-box;
 
       img {
         width: 100%;
         height: auto;
         display: block;
-        @include respond-to(phone) {
-          margin-left: 5%;
-        }
+        margin-left: 5%;
       }
       @include respond-to(phone) {
         width: 80%;

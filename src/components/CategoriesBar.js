@@ -12,6 +12,7 @@ const categories = [
 ]
 
 const CategoriesBar = ({activeCategory, setCategoryAction}) => {
+  
   const onCategoryClick = category => () =>
     category !== null ? setCategoryAction(category) : setCategoryAction(null)
 

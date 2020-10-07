@@ -29,7 +29,6 @@ const HomePage = ({
 
   return (
     <div className="container">
-      {console.log(isLoading)}
       <Header orderCount={orderCount} orderPrice={orderPrice} />
       <main className="content">
         <div className="content__top">

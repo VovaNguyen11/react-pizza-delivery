@@ -52,7 +52,7 @@
       "description": "Meat sauce bolognese, mozzarella, red onion, pickles, tomatoes, burger sauce",
       "types": [0, 1],
       "sizes": [23, 30, 40],
-      "price": { "23": 12.49, "30": 15.99 },
+      "price": { "23": 12.49, "30": 15.99, "40": 21.49 },
       "category": 2,
       "rating": 8
     },

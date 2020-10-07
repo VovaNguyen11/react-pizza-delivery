@@ -4,7 +4,6 @@ import PropTypes from "prop-types"
 import {disableBodyScroll, enableBodyScroll} from "body-scroll-lock"
 import classNames from "classnames"
 import {toast} from "react-toastify"
-import "react-toastify/dist/ReactToastify.css"
 import {addPizzaCartAction} from "../../redux/actions/cart"
 
 import Button from "../Button"
@@ -32,7 +31,7 @@ const PizzaModal = ({
   }, [])
 
   useEffect(() => {
-    if (types && sizes) {
+    if (types && sizes && price) {
       setActiveType(types[0])
       setActiveSize(sizes[0])
       setActivePrice(price[sizes[0]])
@@ -66,7 +65,6 @@ const PizzaModal = ({
 
   return (
     <div className="modal" ref={modalRef} onClick={closeModal}>
-      {console.log("render")}
       <div className="modal__container" onClick={e => e.stopPropagation()}>
         <div className="modal__content modal__content-left">
           <img src={imageUrl} alt={`${name} pizza`} />
