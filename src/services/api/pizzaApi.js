@@ -6,7 +6,7 @@ export const getPizzas = (activeCat, sortBy) => {
   const querySortBy = `_sort=${sortBy.type}&_order=${sortBy.order}`
 
   return axios
-    .get(`http://localhost:3001/pizzas?${queryCategory}&${querySortBy}`)
+    .get(`/pizzas?${queryCategory}&${querySortBy}`)
     .then(handleResponse)
     .catch(handleError)
 }
