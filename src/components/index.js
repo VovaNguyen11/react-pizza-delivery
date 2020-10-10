@@ -1,0 +1,7 @@
+export {default as Button} from "./Button"
+export {default as Header} from "./Header"
+export {default as CategoriesBar} from "./CategoriesBar"
+export {default as SortPopup} from "./SortPopup"
+export {default as CartItem} from "./cart/CartItem"
+export {default as PizzaBlock} from "./pizza/PizzaBlock"
+export {default as PizzaPreloader} from "./pizza/PizzaPreloader"

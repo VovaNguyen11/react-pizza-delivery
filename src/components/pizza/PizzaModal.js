@@ -137,6 +137,7 @@ PizzaModal.propTypes = {
   price: PropTypes.objectOf(PropTypes.number),
   description: PropTypes.string,
   addPizzaCartAction: PropTypes.func.isRequired,
+  red: true,
 }
 
 const mapStateToProps = ({pizzas}, {match}) => {

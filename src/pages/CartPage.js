@@ -1,7 +1,6 @@
 import React, {memo} from "react"
 import {connect} from "react-redux"
 import {Link} from "react-router-dom"
-import PropTypes from "prop-types"
 
 import {clearCartAction} from "../redux/actions/cart"
 
@@ -144,18 +143,5 @@ const CartPage = ({items, orderPrice, orderCount, clearCartAction}) => {
     </div>
   )
 }
-
-CartPage.propTypes = {
-  items: PropTypes.object,
-  orderPrice: PropTypes.number.isRequired,
-  orderCount: PropTypes.number.isRequired,
-  clearCartAction: PropTypes.func.isRequired,
-}
-
-const mapStateToProps = ({cart}) => ({
-  items: cart.order,
-  orderPrice: cart.orderPrice,
-  orderCount: cart.orderCount,
-})
 
 export default connect(mapStateToProps, {clearCartAction})(memo(CartPage))
