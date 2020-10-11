@@ -1,15 +1,20 @@
 import React, {memo} from "react"
-import {connect} from "react-redux"
+import {connect, ConnectedProps} from "react-redux"
 import {Link} from "react-router-dom"
+import {RootState} from "../redux/reducers"
 
 import {clearCartAction} from "../redux/actions/cart"
 
-import Logo from "../components/Logo"
-import CartEmpty from "../components/cart/CartEmpty"
-import CartList from "../components/cart/CartList"
-import Button from "../components/Button"
+import {Logo, CartEmpty, CartList, Button} from "../components"
 
-const CartPage = ({items, orderPrice, orderCount, clearCartAction}) => {
+type CartPageProps = PropsFromRedux
+
+const CartPage: React.FC<CartPageProps> = ({
+  items,
+  orderPrice,
+  orderCount,
+  clearCartAction,
+}) => {
   const onClearCart = () => {
     clearCartAction()
   }
@@ -144,4 +149,13 @@ const CartPage = ({items, orderPrice, orderCount, clearCartAction}) => {
   )
 }
 
-export default connect(mapStateToProps, {clearCartAction})(memo(CartPage))
+const mapStateToProps = ({cart}: RootState) => ({
+  items: cart.order,
+  orderPrice: cart.orderPrice,
+  orderCount: cart.orderCount,
+})
+
+const connector = connect(mapStateToProps, {clearCartAction})
+type PropsFromRedux = ConnectedProps<typeof connector>
+
+export default connector(memo(CartPage))

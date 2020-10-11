@@ -1,22 +1,35 @@
 import React, {useRef, useState, useEffect, memo} from "react"
-import {connect} from "react-redux"
-import PropTypes from "prop-types"
+import {connect, ConnectedProps} from "react-redux"
+import {RouteComponentProps} from "react-router-dom"
 import {disableBodyScroll, enableBodyScroll} from "body-scroll-lock"
 import classNames from "classnames"
 import {toast} from "react-toastify"
+import {IPizza} from "../../types/pizzas"
+import {RootState} from "../../redux/reducers"
+
 import {addPizzaCartAction} from "../../redux/actions/cart"
 
-import Button from "../Button"
+import {Button} from "../../components"
 
 const availableTypes = ["traditional", "thin"]
 const availableSizes = [23, 30, 40]
 
-const PizzaModal = ({
-  item: {id, name, types, sizes, price, imageUrl, description},
+interface MatchParams {
+  id: string
+}
+
+interface PizzaModalProps extends RouteComponentProps<MatchParams> {
+  item: IPizza
+}
+
+type PropsType = PizzaModalProps & PropsFromRedux
+
+const PizzaModal: React.FC<PropsType> = ({
+  item: {id, name, description, imageUrl, sizes, types, price},
   addPizzaCartAction,
   history,
 }) => {
-  const modalRef = useRef()
+  const modalRef = useRef() as React.MutableRefObject<HTMLDivElement>
 
   const [activeType, setActiveType] = useState(0)
   const [activeSize, setActiveSize] = useState(0)
@@ -28,7 +41,7 @@ const PizzaModal = ({
     return () => {
       enableBodyScroll(modalNode)
     }
-  }, [])
+  }, [modalRef])
 
   useEffect(() => {
     if (types && sizes && price) {
@@ -40,9 +53,9 @@ const PizzaModal = ({
 
   const closeModal = () => history.goBack()
 
-  const onSelectType = index => () => setActiveType(index)
+  const onSelectType = (index: number) => () => setActiveType(index)
 
-  const onSelectSize = size => () => {
+  const onSelectSize = (size: number) => () => {
     setActiveSize(size)
     setActivePrice(price[size])
   }
@@ -52,8 +65,8 @@ const PizzaModal = ({
 
     const newItem = {
       id: `${id}_${currentType}_${activeSize}`,
-      name,
-      imageUrl,
+      name: name,
+      imageUrl: imageUrl,
       price: price[activeSize],
       size: activeSize,
       type: currentType,
@@ -128,28 +141,28 @@ const PizzaModal = ({
   )
 }
 
-PizzaModal.propTypes = {
-  id: PropTypes.number,
-  imageUrl: PropTypes.string,
-  name: PropTypes.string,
-  sizes: PropTypes.arrayOf(PropTypes.number),
-  types: PropTypes.arrayOf(PropTypes.number),
-  price: PropTypes.objectOf(PropTypes.number),
-  description: PropTypes.string,
-  addPizzaCartAction: PropTypes.func.isRequired,
-  red: true,
+function ensure<T>(
+  argument: T | undefined | null,
+  message: string = "This value was promised to be there."
+): T {
+  if (argument === undefined || argument === null) {
+    throw new TypeError(message)
+  }
+  return argument
 }
-
-const mapStateToProps = ({pizzas}, {match}) => {
-  const id = match.params.id
+const mapStateToProps = ({pizzas}: RootState, {match}: PizzaModalProps) => {
+  const id = Number(match.params.id)
 
   return {
     pizzas: pizzas.items,
-    item:
-      id && pizzas.items.length
-        ? pizzas.items.find(c => c.id === Number(id))
-        : {},
+    item: pizzas.items.length
+      ? ensure(pizzas.items.find((c: IPizza) => c.id === id))
+      : ({} as IPizza),
   }
 }
 
-export default connect(mapStateToProps, {addPizzaCartAction})(memo(PizzaModal))
+const connector = connect(mapStateToProps, {addPizzaCartAction})
+
+type PropsFromRedux = ConnectedProps<typeof connector>
+
+export default connector(memo(PizzaModal))

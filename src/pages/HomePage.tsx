@@ -1,5 +1,6 @@
 import React, {useEffect, memo} from "react"
-import {connect} from "react-redux"
+import {connect, ConnectedProps} from "react-redux"
+import {RootState} from "../redux/reducers"
 
 import {fetchPizzasAction} from "../redux/actions/pizzas"
 import {setCategoryAction, setSortByAction} from "../redux/actions/filters"
@@ -11,21 +12,23 @@ import {
   SortPopup,
   PizzaPreloader,
 } from "../components"
-import {RootState} from "../redux/reducers"
+import {IPizza} from "../types/pizzas"
+
+type HomePageProps = PropsFromRedux
 
 const HomePage = ({
   pizzas,
-  activeCategory,
   activeSortBy,
-  fetchPizzasAction,
-  setCategoryAction,
-  setSortByAction,
+  activeCategory,
   orderCount,
   orderPrice,
   isLoading,
-}) => {
+  fetchPizzasAction,
+  setCategoryAction,
+  setSortByAction,
+}: HomePageProps) => {
   useEffect(() => {
-    fetchPizzasAction(activeCategory, activeSortBy)
+    fetchPizzasAction(activeSortBy, activeCategory)
   }, [activeCategory, activeSortBy, fetchPizzasAction])
 
   return (
@@ -50,14 +53,14 @@ const HomePage = ({
             ? Array(12)
                 .fill(0)
                 .map((_, index) => <PizzaPreloader key={index} />)
-            : pizzas.map(p => <PizzaBlock pizza={p} key={p.id} />)}
+            : pizzas.map((p: IPizza) => <PizzaBlock pizza={p} key={p.id} />)}
         </div>
       </main>
     </div>
   )
 }
 
-const mapStateToProps = ({filters, pizzas, cart}) => ({
+const mapStateToProps = ({filters, pizzas, cart}: RootState) => ({
   activeCategory: filters.category,
   activeSortBy: filters.sortBy,
   pizzas: pizzas.items,
@@ -66,8 +69,14 @@ const mapStateToProps = ({filters, pizzas, cart}) => ({
   isLoading: pizzas.isLoading,
 })
 
-export default connect(mapStateToProps, {
+const mapDispatchToProps = {
   fetchPizzasAction,
   setCategoryAction,
   setSortByAction,
-})(memo(HomePage))
+}
+
+const connector = connect(mapStateToProps, mapDispatchToProps)
+
+type PropsFromRedux = ConnectedProps<typeof connector>
+
+export default connector(memo(HomePage))

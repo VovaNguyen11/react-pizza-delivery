@@ -8,21 +8,23 @@ import {
 
 export interface IPizzaCart {
   id: string
-  name: string
   imageUrl: string
+  name: string
   price: number
   size: number
   type: string
 }
 
-export interface ICartState {
-  order: {
-    [key: string]: {
-      item: IPizzaCart
-      itemPrice: number
-      itemCount: number
-    }
+export interface ICartItems {
+  [key: string]: {
+    item: IPizzaCart
+    itemPrice: number
+    itemCount: number
   }
+}
+
+export interface ICartState {
+  order: ICartItems
   orderPrice: number
   orderCount: number
 }

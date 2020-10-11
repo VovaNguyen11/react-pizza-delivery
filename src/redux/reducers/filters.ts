@@ -1,5 +1,5 @@
-import {SET_SORT_BY, SET_CATEGORY} from "../types_constants";
-import {IFiltersState, FiltersActionType} from "../../types/filters";
+import {SET_SORT_BY, SET_CATEGORY} from "../types_constants"
+import {IFiltersState, FiltersActionType} from "../../types/filters"
 
 const initialState: IFiltersState = {
   category: null,
@@ -8,7 +8,7 @@ const initialState: IFiltersState = {
     type: "rating",
     order: "desc",
   },
-};
+}
 
 const filters = (
   state = initialState,
@@ -19,15 +19,15 @@ const filters = (
       return {
         ...state,
         category: action.payload,
-      };
+      }
     case SET_SORT_BY:
       return {
         ...state,
         sortBy: action.payload,
-      };
+      }
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default filters;
+export default filters

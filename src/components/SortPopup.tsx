@@ -1,5 +1,6 @@
 import React, {memo} from "react"
 import PropTypes from "prop-types"
+import {ISortBy, FiltersActionType} from "../types/filters"
 
 import useOutsideClick from "../hooks/useOutsideClick"
 
@@ -9,12 +10,20 @@ const sortingItems = [
   {id: 3, name: "alphabet", type: "name", order: "asc"},
 ]
 
-const SortPopup = ({setSortByAction, activeSortBy}) => {
+type SortPopupProps = {
+  activeSortBy: ISortBy
+  setSortByAction: (sortBy: ISortBy) => FiltersActionType
+}
+
+const SortPopup: React.FC<SortPopupProps> = ({
+  setSortByAction,
+  activeSortBy,
+}) => {
   const {ref, isVisible, setIsVisible} = useOutsideClick(false)
 
-  const onPopupClick = () => setIsVisible(isVisible => !isVisible)
+  const onPopupClick = () => setIsVisible((isVisible: boolean) => !isVisible)
 
-  const onSortItemClick = item => e => {
+  const onSortItemClick = (item: ISortBy) => () => {
     setSortByAction(item)
     setIsVisible(false)
   }

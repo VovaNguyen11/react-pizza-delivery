@@ -1,29 +1,29 @@
-import {SET_SORT_BY, SET_CATEGORY} from "../redux/types_constants";
+import {SET_SORT_BY, SET_CATEGORY} from "../redux/types_constants"
 
 export interface ICategory {
-  id: number;
-  name: string;
+  id: number
+  name: string
 }
 
 export interface ISortBy {
-  name: string;
-  type: string;
-  order: string;
+  name: string
+  type: string
+  order: string
 }
 
 export interface IFiltersState {
-  category: ICategory | null;
-  sortBy: ISortBy;
+  category: ICategory | null
+  sortBy: ISortBy
 }
 
 interface ISetCategoryAction {
-  type: typeof SET_CATEGORY;
-  payload: ICategory;
+  type: typeof SET_CATEGORY
+  payload: ICategory | null
 }
 
 interface ISetSortByAction {
-  type: typeof SET_SORT_BY;
-  payload: ISortBy;
+  type: typeof SET_SORT_BY
+  payload: ISortBy
 }
 
-export type FiltersActionType = ISetCategoryAction | ISetSortByAction;
+export type FiltersActionType = ISetCategoryAction | ISetSortByAction

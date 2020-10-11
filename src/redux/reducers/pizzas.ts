@@ -1,10 +1,10 @@
-import {SET_PIZZAS, SET_LOADING} from "../types_constants";
-import {IPizzasState, PizzasActionType} from "./../../types/pizzas";
+import {SET_PIZZAS, SET_LOADING} from "../types_constants"
+import {IPizzasState, PizzasActionType} from "./../../types/pizzas"
 
 const inittialState: IPizzasState = {
   items: [],
   isLoading: false,
-};
+}
 
 const pizzas = (
   state = inittialState,
@@ -15,15 +15,15 @@ const pizzas = (
       return {
         items: action.payload,
         isLoading: false,
-      };
+      }
     case SET_LOADING:
       return {
         ...state,
         isLoading: action.payload,
-      };
+      }
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default pizzas;
+export default pizzas

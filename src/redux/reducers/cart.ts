@@ -1,4 +1,4 @@
-import {IPizzaCart, ICartState, CartActionType} from "./../../types/cart"
+import {ICartState, CartActionType} from "./../../types/cart"
 import {
   ADD_PIZZA_CART,
   REMOVE_PIZZA_CART,

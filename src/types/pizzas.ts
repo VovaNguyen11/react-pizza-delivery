@@ -1,7 +1,7 @@
 import {SET_PIZZAS, SET_LOADING} from "../redux/types_constants"
 
 export interface IPizza {
-  id: string
+  id: number
   imageUrl: string
   name: string
   description: string
@@ -15,7 +15,7 @@ export interface IPizza {
 }
 
 export interface IPizzasState {
-  items: IPizza[] | []
+  items: IPizza[]
   isLoading: boolean
 }
 
