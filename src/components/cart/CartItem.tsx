@@ -1,6 +1,6 @@
 import React, {memo} from "react"
-import {connect} from "react-redux"
-import PropTypes from "prop-types"
+import {connect, ConnectedProps} from "react-redux"
+import {IPizzaCart} from "../../types/cart"
 
 import {
   removePizzaCartAction,
@@ -8,9 +8,15 @@ import {
   minusPizzaCartAction,
 } from "../../redux/actions/cart"
 
-import Button from "../Button"
+import {Button} from "../../components"
 
-const CartItem = ({
+type CartItemProps = PropsFromRedux & {
+  item: IPizzaCart
+  itemCount: number
+  itemPrice: number
+}
+
+const CartItem: React.FC<CartItemProps> = ({
   item: {id, imageUrl, name, type, size},
   itemCount,
   itemPrice,
@@ -18,9 +24,13 @@ const CartItem = ({
   plusPizzaCartAction,
   minusPizzaCartAction,
 }) => {
-  const onPlusItem = id => e => plusPizzaCartAction(id)
-  const onMinusItem = id => e => minusPizzaCartAction(id)
-  const onRemoveItem = id => e => removePizzaCartAction(id)
+  const onPlusItem = (id: string) => (e: React.MouseEvent<HTMLButtonElement>) =>
+    plusPizzaCartAction(id)
+  const onMinusItem = (id: string) => (
+    e: React.MouseEvent<HTMLButtonElement>
+  ) => minusPizzaCartAction(id)
+  const onRemoveItem = (id: string) => (e: React.MouseEvent<HTMLDivElement>) =>
+    removePizzaCartAction(id)
 
   return (
     <div className="cart__item">
@@ -70,22 +80,11 @@ const CartItem = ({
   )
 }
 
-CartItem.propTypes = {
-  id: PropTypes.number,
-  imageUrl: PropTypes.string,
-  name: PropTypes.string,
-  sizes: PropTypes.arrayOf(PropTypes.string),
-  types: PropTypes.arrayOf(PropTypes.number),
-  price: PropTypes.objectOf(PropTypes.number),
-  itemCount: PropTypes.number.isRequired,
-  itemPrice: PropTypes.number.isRequired,
-  removePizzaCartAction: PropTypes.func.isRequired,
-  plusPizzaCartAction: PropTypes.func.isRequired,
-  minusPizzaCartAction: PropTypes.func.isRequired,
-}
-
-export default connect(state => state, {
+const connector = connect(state => state, {
   removePizzaCartAction,
   plusPizzaCartAction,
   minusPizzaCartAction,
-})(memo(CartItem))
+})
+type PropsFromRedux = ConnectedProps<typeof connector>
+
+export default connector(memo(CartItem))

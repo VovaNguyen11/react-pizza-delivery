@@ -1,6 +1,6 @@
 import React, {memo} from "react"
-import PropTypes from "prop-types"
 import classNames from "classnames"
+import {ICategory, FiltersActionType} from "../types/filters"
 
 import Button from "./Button"
 
@@ -11,9 +11,16 @@ const categories = [
   {id: 4, name: "Vegeterian"},
 ]
 
-const CategoriesBar = ({activeCategory, setCategoryAction}) => {
-  
-  const onCategoryClick = category => () =>
+type CategoriesBarProps = {
+  activeCategory: ICategory | null
+  setCategoryAction: (category: ICategory | null) => FiltersActionType
+}
+
+const CategoriesBar: React.FC<CategoriesBarProps> = ({
+  activeCategory,
+  setCategoryAction,
+}) => {
+  const onCategoryClick = (category: ICategory | null) => () =>
     category !== null ? setCategoryAction(category) : setCategoryAction(null)
 
   return (
@@ -44,14 +51,6 @@ const CategoriesBar = ({activeCategory, setCategoryAction}) => {
       </ul>
     </div>
   )
-}
-
-CategoriesBar.propTypes = {
-  activeCategory: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-  }),
-  setCategoryAction: PropTypes.func.isRequired,
 }
 
 export default memo(CategoriesBar)

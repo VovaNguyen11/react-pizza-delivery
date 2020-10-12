@@ -1,8 +1,19 @@
 import React, {memo} from "react"
-import PropTypes from "prop-types"
 import classNames from "classnames"
 
-const Button = ({onClick, className, outline, children}) => {
+type ButtonProps = {
+  className?: string
+  outline?: boolean
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
+  children: React.ReactNode
+}
+
+const Button: React.FC<ButtonProps> = ({
+  onClick,
+  className,
+  outline,
+  children,
+}) => {
   return (
     <button
       onClick={onClick}
@@ -11,13 +22,6 @@ const Button = ({onClick, className, outline, children}) => {
       {children}
     </button>
   )
-}
-
-Button.propTypes = {
-  onClick: PropTypes.func,
-  className: PropTypes.string,
-  outline: PropTypes.bool,
-  children: PropTypes.any,
 }
 
 export default memo(Button)

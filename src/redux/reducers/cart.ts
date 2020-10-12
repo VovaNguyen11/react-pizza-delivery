@@ -1,19 +1,25 @@
-import C from "../types_constants"
+import {ICartState, CartActionType} from "./../../types/cart"
+import {
+  ADD_PIZZA_CART,
+  REMOVE_PIZZA_CART,
+  PLUS_PIZZA_CART,
+  MINUS_PIZZA_CART,
+  CLEAR_CART,
+} from "../types_constants"
 
-const initState = {
+const initState: ICartState = {
   order: {},
   orderPrice: 0,
   orderCount: 0,
 }
 
-// const getItemPrice = (item, amount) => (item ? item.itemPrice + amount : amount)
-const roundPrice = price => Math.round(price * 100) / 100
+const roundPrice = (price: number) => Math.round(price * 100) / 100
 
-const cart = (state = initState, {type, payload}) => {
-  switch (type) {
-    case C.ADD_PIZZA_CART: {
+const cart = (state = initState, action: CartActionType): ICartState => {
+  switch (action.type) {
+    case ADD_PIZZA_CART: {
       let {order, orderPrice, orderCount} = state
-      const {id, price} = payload
+      const {id, price} = action.payload
 
       const prevItem = order[id]
       const currentItem = prevItem
@@ -23,7 +29,7 @@ const cart = (state = initState, {type, payload}) => {
             itemCount: ++prevItem.itemCount,
           }
         : {
-            item: payload,
+            item: action.payload,
             itemCount: 1,
             itemPrice: price,
           }
@@ -35,18 +41,18 @@ const cart = (state = initState, {type, payload}) => {
       }
     }
 
-    case C.PLUS_PIZZA_CART: {
+    case PLUS_PIZZA_CART: {
       let {order, orderPrice, orderCount} = state
 
-      const currentItem = order[payload]
+      const currentItem = order[action.payload]
       const currentItemPrice = currentItem.item.price
 
       const newItemPrice = roundPrice(currentItem.itemPrice + currentItemPrice)
 
       const newItem = {
         ...order,
-        [payload]: {
-          ...order[payload],
+        [action.payload]: {
+          ...order[action.payload],
           itemPrice: newItemPrice,
           itemCount: ++currentItem.itemCount,
         },
@@ -57,9 +63,9 @@ const cart = (state = initState, {type, payload}) => {
         orderCount: ++orderCount,
       }
     }
-    case C.MINUS_PIZZA_CART: {
+    case MINUS_PIZZA_CART: {
       let {order, orderPrice, orderCount} = state
-      const currentItem = order[payload]
+      const currentItem = order[action.payload]
 
       if (currentItem.itemCount === 1) {
         return state
@@ -71,8 +77,8 @@ const cart = (state = initState, {type, payload}) => {
 
       const newItem = {
         ...order,
-        [payload]: {
-          ...order[payload],
+        [action.payload]: {
+          ...order[action.payload],
           itemPrice: newItemPrice,
           itemCount: --currentItem.itemCount,
         },
@@ -84,15 +90,15 @@ const cart = (state = initState, {type, payload}) => {
       }
     }
 
-    case C.REMOVE_PIZZA_CART: {
+    case REMOVE_PIZZA_CART: {
       const {order, orderPrice, orderCount} = state
 
       const newItems = {...order}
 
-      const currentItemPrice = newItems[payload].itemPrice
-      const currentItemCount = newItems[payload].itemCount
+      const currentItemPrice = newItems[action.payload].itemPrice
+      const currentItemCount = newItems[action.payload].itemCount
 
-      delete newItems[payload]
+      delete newItems[action.payload]
 
       return {
         order: newItems,
@@ -100,8 +106,7 @@ const cart = (state = initState, {type, payload}) => {
         orderCount: orderCount - currentItemCount,
       }
     }
-
-    case C.CLEAR_CART:
+    case CLEAR_CART:
       return {
         order: {},
         orderPrice: 0,

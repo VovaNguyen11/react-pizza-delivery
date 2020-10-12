@@ -1,16 +1,26 @@
 import React, {lazy, Suspense} from "react"
-import {Redirect, Route, Switch, useLocation} from "react-router-dom"
-
+import {StaticContext} from "react-router"
 import {ToastContainer} from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
+import {
+  Redirect,
+  Route,
+  Switch,
+  RouteComponentProps,
+  withRouter,
+} from "react-router-dom"
 
+import {PizzaModal} from "../components"
 import HomePage from "../pages/HomePage"
-import PizzaModal from "../components/pizza/PizzaModal"
-
 const CartPage = lazy(() => import("../pages/CartPage"))
 
-const App = () => {
-  const location = useLocation()
+type LocationState = {
+  background: any
+}
+
+const App: React.FC<RouteComponentProps<{}, StaticContext, LocationState>> = ({
+  location,
+}) => {
   const background = location.state && location.state.background
 
   return (
@@ -40,4 +50,4 @@ const App = () => {
   )
 }
 
-export default App
+export default withRouter(App)

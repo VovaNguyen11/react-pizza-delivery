@@ -1,12 +1,16 @@
 import React, {memo} from "react"
-import PropTypes from "prop-types"
 import {useMediaQuery} from "react-responsive"
 import {Link} from "react-router-dom"
 
-import Logo from "../components/Logo"
+import Logo from "./Logo"
 import CartIcon from "../assets/img/cart.svg"
 
-const Header = ({orderPrice, orderCount}) => {
+type HeaderProps = {
+  orderPrice: number
+  orderCount: number
+}
+
+const Header: React.FC<HeaderProps> = ({orderPrice, orderCount}) => {
   const isMobile = useMediaQuery({query: "(max-width: 640px)"})
   return (
     <header className="header">
@@ -26,11 +30,6 @@ const Header = ({orderPrice, orderCount}) => {
       )}
     </header>
   )
-}
-
-Header.propTypes = {
-  orderPrice: PropTypes.number.isRequired,
-  orderCount: PropTypes.number.isRequired,
 }
 
 export default memo(Header)

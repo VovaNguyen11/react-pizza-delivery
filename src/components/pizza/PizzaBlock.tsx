@@ -1,12 +1,14 @@
+import {IPizza} from "../../types/pizzas"
 import React, {memo} from "react"
-import PropTypes from "prop-types"
 import {Link, useLocation} from "react-router-dom"
-import {connect} from "react-redux"
+import {Button} from "../../components"
 
-import Button from "../Button"
+type PizzaBlockProps = {
+  pizza: IPizza
+}
 
-const PizzaBlock = ({pizza}) => {
-  let location = useLocation()
+const PizzaBlock: React.FC<PizzaBlockProps> = ({pizza}) => {
+  const location = useLocation()
   const minPrice = pizza.price[pizza.sizes[0]]
 
   return (
@@ -44,21 +46,4 @@ const PizzaBlock = ({pizza}) => {
   )
 }
 
-PizzaBlock.propTypes = {
-  pizza: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    imageUrl: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    sizes: PropTypes.arrayOf(PropTypes.number).isRequired,
-    types: PropTypes.arrayOf(PropTypes.number).isRequired,
-    price: PropTypes.objectOf(PropTypes.number).isRequired,
-    description: PropTypes.string.isRequired,
-  }).isRequired,
-  isLoading: PropTypes.bool.isRequired,
-}
-
-const mapStateToProps = ({pizzas}) => ({
-  isLoading: pizzas.isLoading,
-})
-
-export default connect(mapStateToProps)(memo(PizzaBlock))
+export default memo(PizzaBlock)

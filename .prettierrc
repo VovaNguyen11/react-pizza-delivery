@@ -20,6 +20,12 @@
       "options": {
         "parser": "scss"
       }
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "options": {
+        "parser": "typescript"
+      }
     }
   ]
 }
